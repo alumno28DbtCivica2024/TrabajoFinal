@@ -1,0 +1,163 @@
+version: 2
+
+sources:
+
+
+  - name: credit_risk
+    schema: credit_risk
+    database: alumno28_dev_bronze_db
+
+
+    tables:
+
+
+      - name: loan
+        columns:
+          - name: id
+            data_type: number
+          - name: member_id
+            data_type: number
+          - name: loan_amnt
+            data_type: number
+          - name: funded_amnt
+            data_type: number
+          - name: funded_amnt_inv
+            data_type: number
+          - name: term
+            data_type: varchar
+          - name: int_rate
+            data_type: number
+          - name: installment
+            data_type: number
+          - name: grade
+            data_type: varchar
+          - name: sub_grade
+            data_type: varchar
+          - name: emp_title
+            data_type: varchar
+          - name: emp_length
+            data_type: varchar
+          - name: home_ownership
+            data_type: varchar
+          - name: annual_inc
+            data_type: number
+          - name: verification_status
+            data_type: varchar
+          - name: issue_d
+            data_type: varchar
+          - name: loan_status
+            data_type: varchar
+          - name: pymnt_plan
+            data_type: varchar
+          - name: url
+            data_type: varchar
+          - name: desc
+            data_type: varchar
+          - name: purpose
+            data_type: varchar
+          - name: title
+            data_type: varchar
+          - name: zip_code
+            data_type: varchar
+          - name: addr_state
+            data_type: varchar
+          - name: dti
+            data_type: number
+          - name: delinq_2yrs
+            data_type: number
+          - name: earliest_cr_line
+            data_type: varchar
+          - name: inq_last_6mths
+            data_type: number
+          - name: mths_since_last_delinq
+            data_type: number
+          - name: mths_since_last_record
+            data_type: number
+          - name: open_acc
+            data_type: number
+          - name: pub_rec
+            data_type: number
+          - name: revol_bal
+            data_type: number
+          - name: revol_util
+            data_type: number
+          - name: total_acc
+            data_type: number
+          - name: initial_list_status
+            data_type: varchar
+          - name: out_prncp
+            data_type: number
+          - name: out_prncp_inv
+            data_type: number
+          - name: total_pymnt
+            data_type: number
+          - name: total_pymnt_inv
+            data_type: number
+          - name: total_rec_prncp
+            data_type: number
+          - name: total_rec_int
+            data_type: number
+          - name: total_rec_late_fee
+            data_type: number
+          - name: recoveries
+            data_type: number
+          - name: collection_recovery_fee
+            data_type: number
+          - name: last_pymnt_d
+            data_type: varchar
+          - name: last_pymnt_amnt
+            data_type: number
+          - name: next_pymnt_d
+            data_type: varchar
+          - name: last_credit_pull_d
+            data_type: varchar
+          - name: collections_12_mths_ex_med
+            data_type: number
+          - name: mths_since_last_major_derog
+            data_type: varchar
+          - name: policy_code
+            data_type: number
+          - name: application_type
+            data_type: varchar
+          - name: annual_inc_joint
+            data_type: varchar
+          - name: dti_joint
+            data_type: varchar
+          - name: verification_status_joint
+            data_type: varchar
+          - name: acc_now_delinq
+            data_type: number
+          - name: tot_coll_amt
+            data_type: varchar
+          - name: tot_cur_bal
+            data_type: varchar
+          - name: open_acc_6m
+            data_type: varchar
+          - name: open_il_6m
+            data_type: varchar
+          - name: open_il_12m
+            data_type: varchar
+          - name: open_il_24m
+            data_type: varchar
+          - name: mths_since_rcnt_il
+            data_type: varchar
+          - name: total_bal_il
+            data_type: varchar
+          - name: il_util
+            data_type: varchar
+          - name: open_rv_12m
+            data_type: varchar
+          - name: open_rv_24m
+            data_type: varchar
+          - name: max_bal_bc
+            data_type: varchar
+          - name: all_util
+            data_type: varchar
+          - name: total_rev_hi_lim
+            data_type: varchar
+          - name: inq_fi
+            data_type: varchar
+          - name: total_cu_tl
+            data_type: varchar
+          - name: inq_last_12m
+            data_type: varchar
