@@ -3,8 +3,8 @@ version: 2
 sources:
 
 
-  - name: credit_risk
-    schema: credit_risk
+  - name: google_drive
+    schema: google_drive
     database: alumno28_dev_bronze_db
 
 
@@ -160,4 +160,12 @@ sources:
           - name: total_cu_tl
             data_type: varchar
           - name: inq_last_12m
+            data_type: varchar
+          - name: _fivetran_synced
+            data_type: timestamp_tz
+          - name: _line
+            data_type: number
+          - name: _modified
+            data_type: timestamp_tz
+          - name: _file
             data_type: varchar
