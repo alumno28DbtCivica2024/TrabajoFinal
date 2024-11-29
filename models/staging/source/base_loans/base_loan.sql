@@ -2,7 +2,7 @@
 
 with source as (
 
-    select * from {{ source('google_drive', 'loan') }}
+    select * from {{ source('google_drive', 'loan') }}id$0
 
 ),
 
