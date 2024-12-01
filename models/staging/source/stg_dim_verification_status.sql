@@ -2,14 +2,14 @@
 
 with source as (
 
-    select * from {{ ref('stg_per_info_members') }}
+    select * from {{ ref('base_loan') }}
 
 ),
 
 renamed as (
 
     select distinct
-        {{ dbt_utils.generate_surrogate_key(['verification_status']) }} as verification_status,
+        {{ dbt_utils.generate_surrogate_key(['verification_status']) }} as verification_status_id,
         verification_status
 
     from source

@@ -2,7 +2,7 @@
 
 with source as (
 
-    select * from {{ ref('stg_per_info_members') }}
+    select * from {{ ref('base_loan') }}
 
 ),
 
