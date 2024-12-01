@@ -12,7 +12,7 @@ renamed as (
         loan_id,
         funded_amnt,
         funded_amnt_inv,
-        loan_status,
+        {{ dbt_utils.generate_surrogate_key(['loan_status']) }} as loan_status_id,
         out_prncp,
         out_prncp_inv,
         total_pymnt,
