@@ -10,12 +10,12 @@ renamed as (
 
     select
         member_id,
-        emp_length,
+        {{ dbt_utils.generate_surrogate_key(['emp_length']) }} as emp_length_id,
         employ,
-        home_ownership,
+        {{ dbt_utils.generate_surrogate_key(['home_ownership']) }} as home_ownership_id,
         annual_inc,
-        verification_status,
-        zip_code,
+        {{ dbt_utils.generate_surrogate_key(['verification_status']) }} as verification_status,
+        {{ dbt_utils.generate_surrogate_key(['zip_code']) }} as zip_code_id,
         addr_state,
         dti
 

@@ -30,7 +30,7 @@ renamed as (
         trim(grade) as grade,
         trim(sub_grade) as sub_grade,
         coalesce(emp_title, 'Unemployed') as employ,
-        trim(emp_length) as emp_length,
+        case when trim(emp_length)='n/a' then null else trim(emp_length) end as emp_length,
         trim(home_ownership) as home_ownership,
         floor(annual_inc) as annual_inc,
         trim(verification_status) as verification_status,
