@@ -1,8 +1,18 @@
-{{ config(materialized='view') }}
+{{ config(
+    materialized='incremental',
+    unique_key = 'loan_id'
+    ) 
+    }}
 
 with source as (
 
-    select * from {{ source('google_drive', 'loan') }}id$0
+    select * from {{ source('google_drive', 'loan') }}
+
+{% if is_incremental() %}
+
+	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+
+{% endif %}
 
 ),
 
