@@ -11,32 +11,52 @@ models:
         tests:
           - unique
           - not_null
+
       - name: emp_length_id
         description: Clave surrogate generada para la duración del empleo del prestatario.
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_emp_length')
+              field: emp_length_id
+
       - name: employ
         description: Título del empleo del prestatario o 'Unemployed' si no se especifica.
+
       - name: home_ownership_id
         description: Clave surrogate generada para el estado de propiedad de vivienda del prestatario.
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_home_ownership')
+              field: home_ownership_id
+
       - name: annual_inc
         description: Ingreso anual reportado del prestatario.
+
       - name: verification_status_id
         description: Clave surrogate generada para el estado de verificación del ingreso del prestatario.
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_verification_status')
+              field: verification_status_id
+
       - name: zip_code_id
         description: Clave surrogate generada para el código postal del prestatario.
         tests:
           - unique
           - not_null
+          - relationships:
+              to: ref('stg_zip_code')
+              field: zip_code_id
+
       - name: addr_state
         description: Estado de residencia del prestatario.
+
       - name: dti
         description: Relación deuda-ingreso del prestatario.
 
@@ -51,31 +71,45 @@ models:
         tests:
           - unique
           - not_null
+
       - name: funded_amnt
         description: Monto total financiado para el préstamo.
+
       - name: funded_amnt_inv
         description: Monto total invertido en el préstamo por los inversionistas.
+
       - name: loan_status_id
         description: Clave surrogate generada para el estado del préstamo.
         tests:
-          - unique
           - not_null
+          - relationships:
+              to: ref('stg_loan_state')
+              field: loan_state_id
+
       - name: out_prncp
         description: Principal restante pendiente del préstamo.
+
       - name: out_prncp_inv
         description: Principal restante pendiente para los inversionistas.
+
       - name: total_pymnt
         description: Pagos totales realizados redondeados a 2 decimales.
+
       - name: total_pymnt_inv
         description: Pagos totales realizados por los inversionistas.
+
       - name: total_rec_prncp
         description: Principal total recibido.
+
       - name: total_rec_int
         description: Intereses totales recibidos.
+
       - name: total_rec_late_fee
         description: Multas totales por pagos tardíos recibidas.
+
       - name: recoveries
         description: Monto recuperado en préstamos impagos.
+        
       - name: collection_recovery_fee
         description: Cargos por recuperación de colecciones redondeados a 2 decimales.
 
@@ -94,10 +128,16 @@ models:
         description: Identificador único del préstamo.
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_loan_main')
+              field: loan_id
+
       - name: last_pymnt_d
         description: Fecha del último pago recibido en formato MM-YYYY.
+
       - name: last_pymnt_amnt
         description: Monto del último pago recibido.
+
       - name: next_pymnt_d
         description: Fecha del próximo pago programado en formato MM-YYYY.
 
@@ -111,38 +151,59 @@ models:
         tests:
           - unique
           - not_null
+
       - name: member_id
         description: Identificador único del prestatario.
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_per_info_members')
+              field: member_id
+
       - name: loan_amnt
         description: Monto total del préstamo solicitado.
+
       - name: term_months
         description: Plazo del préstamo en meses.
+
       - name: int_rate
         description: Tasa de interés aplicada al préstamo.
+
       - name: monthly_fee
         description: Cuota mensual asociada al préstamo.
+
       - name: grade
         description: Clasificación del préstamo basada en el riesgo crediticio.
+
       - name: sub_grade
         description: Subclasificación del préstamo basada en el riesgo crediticio.
+
       - name: issue_d
         description: Fecha de emisión del préstamo en formato MM-YYYY.
+
       - name: pymnt_plan
         description: Indica si el prestatario está en un plan de pagos (TRUE/FALSE).
+
       - name: desc
         description: Descripción proporcionada para el préstamo.
+
       - name: purpose_id
         description: Clave surrogate única generada a partir del propósito del préstamo.
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_purpose')
+              field: purpose_id
+
       - name: title
         description: Título del préstamo.
+
       - name: initial_list_status
         description: Estado inicial del listado del préstamo ('funded' o 'waitlist').
+
       - name: application_type
         description: Tipo de solicitud del préstamo ('Individual' o 'Joint').
+
       - name: policy_code
         description: Código que indica la política a la que pertenece el préstamo.
 
@@ -155,30 +216,44 @@ models:
         description: Identificador único del prestatario.
         tests:
           - not_null
+          - unique
+
       - name: delinq_2_yrs
         description: Número de cuentas con retrasos de más de 30 días en los últimos 2 años.
+
       - name: earliest_cr_line
         description: Fecha de apertura de la línea de crédito más antigua en formato MM-YYYY.
+
       - name: inq_last_6_mths
         description: Número de consultas de crédito en los últimos 6 meses.
+
       - name: mths_since_last_delinq
         description: Meses desde el último incumplimiento reportado.
+
       - name: mths_since_last_record
         description: Meses desde el último registro público negativo.
+
       - name: open_acc
         description: Número total de cuentas de crédito abiertas.
+
       - name: pub_rec
         description: Número de registros públicos reportados.
+
       - name: revol_bal
         description: Saldo rotativo total del prestatario.
+
       - name: revol_util
         description: Uso del crédito rotativo como porcentaje.
+
       - name: total_acc
         description: Número total de cuentas de crédito.
+
       - name: last_credit_pull_d
         description: Fecha de la última consulta de crédito en formato MM-YYYY.
+
       - name: collections_12_mths_ex_med
         description: Cantidad de cobros en los últimos 12 meses excluyendo lo médico.
+
       - name: mths_since_last_major_derog
         description: Meses desde la última falta grave reportada.
 
@@ -191,6 +266,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: purpose
         description: Propósito del préstamo, como 'educación', 'hogar' o 'viajes', entre otros.
         tests:
@@ -205,6 +281,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: zip_code
         description: Código postal asociado al prestatario.
         tests:
@@ -219,6 +296,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: verification_status
         description: Estado de verificación del ingreso del prestatario, indicando si el ingreso ha sido verificado.
         tests:
@@ -233,6 +311,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: loan_status
         description: Estado actual del préstamo, indicando su situación (aprobado, en pago, etc.).
         tests:
@@ -247,6 +326,7 @@ models:
         tests:
           - unique
           - not_null
+
       - name: home_ownership
         description: Estado de propiedad de vivienda del prestatario (por ejemplo, 'Own', 'Rent', etc.).
         tests:
@@ -261,6 +341,7 @@ models:
         tests:
           - unique
           - not_null
+          
       - name: emp_length
         description: Años de empleo del prestatario en formato textual (por ejemplo, '1 year', '10+ years', etc.).
         tests:
