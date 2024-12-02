@@ -60,7 +60,7 @@ models:
       - name: dti
         description: Relación deuda-ingreso del prestatario.
 
-  - name: stg_loan_state
+  - name: stg_loan
     description: >
       Vista que proporciona información financiera detallada sobre los préstamos,
       incluyendo montos financiados, pagos realizados, recuperaciones, y estados
@@ -129,7 +129,7 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_loan_main')
+              to: ref('stg_loan')
               field: loan_id
 
       - name: last_pymnt_d
@@ -141,7 +141,7 @@ models:
       - name: next_pymnt_d
         description: Fecha del próximo pago programado en formato MM-YYYY.
 
-  - name: stg_loan_main
+  - name: stg_loan
     description: >
       Vista que proporciona información detallada sobre los préstamos, incluyendo montos, 
       términos, tasas de interés, planes de pago, propósito, y detalles de la aplicación.
@@ -206,6 +206,47 @@ models:
 
       - name: policy_code
         description: Código que indica la política a la que pertenece el préstamo.
+
+      - name: funded_amnt
+        description: Monto total financiado para el préstamo.
+
+      - name: funded_amnt_inv
+        description: Monto total invertido en el préstamo por los inversionistas.
+
+      - name: loan_status_id
+        description: Clave surrogate generada para el estado del préstamo.
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_loan_status')
+              field: loan_status_id
+
+      - name: out_prncp
+        description: Principal restante pendiente del préstamo.
+
+      - name: out_prncp_inv
+        description: Principal restante pendiente para los inversionistas.
+
+      - name: total_pymnt
+        description: Pagos totales realizados redondeados a 2 decimales.
+
+      - name: total_pymnt_inv
+        description: Pagos totales realizados por los inversionistas.
+
+      - name: total_rec_prncp
+        description: Principal total recibido.
+
+      - name: total_rec_int
+        description: Intereses totales recibidos.
+
+      - name: total_rec_late_fee
+        description: Multas totales por pagos tardíos recibidas.
+
+      - name: recoveries
+        description: Monto recuperado en préstamos impagos.
+        
+      - name: collection_recovery_fee
+        description: Cargos por recuperación de colecciones redondeados a 2 decimales.
 
   - name: stg_credit_history_member
     description: >

@@ -13,7 +13,9 @@ renamed as (
         loan_id,
         last_pymnt_d,
         last_pymnt_amnt,
-        next_pymnt_d
+        next_pymnt_d,
+        dbt_valid_from,
+        dbt_valid_to
 
     from source
 
