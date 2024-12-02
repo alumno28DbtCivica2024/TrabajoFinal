@@ -93,7 +93,7 @@ renamed as (
         inq_fi,
         total_cu_tl,
         inq_last_12_m,
-        _fivetran_synced as _fivetran_synced
+        _fivetran_synced 
 
     from source
 

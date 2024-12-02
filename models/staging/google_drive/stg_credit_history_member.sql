@@ -1,14 +1,26 @@
-{{ config(materialized='view') }}
+{{ config(
+    materialized='incremental',
+    unique_key = 'member_id'
+    ) 
+    }}
 
-with source as (
+WITH source AS (
+    SELECT * 
+    FROM {{ ref('base_loan') }}
 
-    select * from {{ ref('base_loan') }}
+{% if is_incremental() %}
 
+	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+
+{% endif %}
 ),
+
+
 
 renamed as (
 
     select
+        {{ dbt_utils.generate_surrogate_key(['member_id','_fivetran_synced']) }} as history_id,
         member_id,
         delinq_2_yrs,
         earliest_cr_line,
@@ -22,7 +34,9 @@ renamed as (
         total_acc,
         last_credit_pull_d,
         collections_12_mths_ex_med,
-        mths_since_last_major_derog
+        mths_since_last_major_derog,
+        _fivetran_synced as history_date,
+        _fivetran_synced
 
     from source
 

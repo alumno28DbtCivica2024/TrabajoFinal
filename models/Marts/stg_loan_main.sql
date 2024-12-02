@@ -1,8 +1,18 @@
-{{ config(materialized='view') }}
+{{ config(
+    materialized='incremental',
+    unique_key = 'loan_id'
+    ) 
+    }}
 
 with source as (
 
-    select * from {{ ref('base_loan') }}
+    select * from {{ ref('stg_loan') }}
+
+{% if is_incremental() %}
+
+	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+
+{% endif %}
 
 ),
 
@@ -20,11 +30,12 @@ renamed as (
         issue_d,
         pymnt_plan,
         desc,
-        {{ dbt_utils.generate_surrogate_key(['purpose']) }} as purpose_id,
+        purpose_id,
         title,
         initial_list_status,
         application_type,
-        policy_code
+        policy_code,
+        _fivetran_synced
 
     from source
 

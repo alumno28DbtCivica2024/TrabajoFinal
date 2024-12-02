@@ -1,8 +1,18 @@
-{{ config(materialized='view') }}
+{{ config(
+    materialized='incremental',
+    unique_key = 'loan_id'
+    ) 
+    }}
 
 with source as (
 
-    select * from {{ ref('base_loan') }}
+    select * from {{ ref('stg_loan') }}
+
+{% if is_incremental() %}
+
+	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+
+{% endif %}
 
 ),
 
@@ -12,7 +22,7 @@ renamed as (
         loan_id,
         funded_amnt,
         funded_amnt_inv,
-        {{ dbt_utils.generate_surrogate_key(['loan_status']) }} as loan_status_id,
+        loan_status_id,
         out_prncp,
         out_prncp_inv,
         total_pymnt,
@@ -21,7 +31,8 @@ renamed as (
         total_rec_int,
         total_rec_late_fee,
         recoveries,
-        collection_recovery_fee
+        collection_recovery_fee,
+        _fivetran_synced
 
     from source
 

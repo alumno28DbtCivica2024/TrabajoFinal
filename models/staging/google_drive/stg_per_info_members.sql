@@ -1,8 +1,18 @@
-{{ config(materialized='view') }}
+{{ config(
+    materialized='incremental',
+    unique_key = 'member_id'
+    ) 
+    }}
 
 with source as (
 
     select * from {{ ref('base_loan') }}
+
+{% if is_incremental() %}
+
+	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+
+{% endif %}
 
 ),
 
@@ -17,7 +27,8 @@ renamed as (
         {{ dbt_utils.generate_surrogate_key(['verification_status']) }} as verification_status_id,
         {{ dbt_utils.generate_surrogate_key(['zip_code']) }} as zip_code_id,
         addr_state,
-        dti
+        dti,
+        _fivetran_synced
 
     from source
 
