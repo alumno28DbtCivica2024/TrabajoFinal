@@ -1,171 +1,212 @@
 version: 2
 
 sources:
-
-
   - name: google_drive
     schema: google_drive
     database: alumno28_dev_bronze_db
-
-
     tables:
-
-
       - name: loan
+        description: >
+          Vista que contiene los datos de los préstamos cargados desde Google Drive. 
+          Proporciona información detallada sobre los préstamos, incluyendo montos, tasas, términos, 
+          datos del prestatario, pagos y estados de los préstamos.
+        loaded_at_field: _fivetran_synced
         columns:
+
           - name: id
+            description: Identificador único del préstamo.
             data_type: number
+            tests:
+              - unique
+              - not_null
+
           - name: member_id
+            description: Identificador único del prestatario.
             data_type: number
+            tests:
+              - unique
+              - not_null
+
           - name: loan_amnt
+            description: Monto total del préstamo solicitado.
             data_type: number
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "loan_amnt >= 0"
+
           - name: funded_amnt
+            description: Monto total financiado para el préstamo.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "funded_amnt >= 0"
+
           - name: funded_amnt_inv
+            description: Monto total invertido en el préstamo por los inversionistas.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "funded_amnt_inv >= 0"
+
           - name: term
+            description: Plazo del préstamo en meses.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: int_rate
+            description: Tasa de interés aplicada al préstamo.
             data_type: number
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "int_rate >= 0"
+
           - name: installment
+            description: Cuota mensual asociada al préstamo.
             data_type: number
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "installment >= 0"
+
           - name: grade
+            description: Clasificación del préstamo basada en el riesgo crediticio.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: sub_grade
+            description: Subclasificación del préstamo basada en el riesgo crediticio.
             data_type: varchar
+
           - name: emp_title
+            description: Título del empleo del prestatario.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: emp_length
+            description: Años de empleo del prestatario en formato textual.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: home_ownership
+            description: Estado de propiedad de vivienda del prestatario.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: annual_inc
+            description: Ingreso anual reportado del prestatario.
             data_type: number
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "annual_inc >= 0"
+
           - name: verification_status
+            description: Estado de verificación del ingreso del prestatario.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: issue_d
+            description: Fecha de emisión del préstamo en formato MM-YYYY.
             data_type: varchar
+
           - name: loan_status
+            description: Estado actual del préstamo.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: pymnt_plan
+            description: Indica si el prestatario está en un plan de pagos.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: url
+            description: Enlace al detalle del préstamo.
             data_type: varchar
+
           - name: desc
+            description: Descripción proporcionada para el préstamo.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: purpose
+            description: Propósito del préstamo.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: title
+            description: Título del préstamo.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: zip_code
+            description: Código postal del prestatario.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: addr_state
+            description: Estado de residencia del prestatario.
             data_type: varchar
+            tests:
+              - not_null
+
           - name: dti
+            description: Relación deuda-ingreso del prestatario.
             data_type: number
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "dti >= 0"
+
           - name: delinq_2yrs
+            description: Número de cuentas con retrasos de más de 30 días en los últimos 2 años.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "delinq_2yrs >= 0"
+
           - name: earliest_cr_line
+            description: Fecha de apertura de la línea de crédito más antigua en formato MM-YYYY.
             data_type: varchar
+
           - name: inq_last_6mths
+            description: Número de consultas de crédito en los últimos 6 meses.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "inq_last_6mths >= 0"
+
           - name: mths_since_last_delinq
+            description: Meses desde el último incumplimiento reportado.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "mths_since_last_delinq >= 0"
+
           - name: mths_since_last_record
+            description: Meses desde el último registro público negativo.
             data_type: number
+            tests:
+              - expression_is_true:
+                  expression: "mths_since_last_record >= 0"
+
           - name: open_acc
+            description: Número total de cuentas de crédito abiertas.
             data_type: number
-          - name: pub_rec
-            data_type: number
-          - name: revol_bal
-            data_type: number
-          - name: revol_util
-            data_type: number
-          - name: total_acc
-            data_type: number
-          - name: initial_list_status
-            data_type: varchar
-          - name: out_prncp
-            data_type: number
-          - name: out_prncp_inv
-            data_type: number
-          - name: total_pymnt
-            data_type: number
-          - name: total_pymnt_inv
-            data_type: number
-          - name: total_rec_prncp
-            data_type: number
-          - name: total_rec_int
-            data_type: number
-          - name: total_rec_late_fee
-            data_type: number
-          - name: recoveries
-            data_type: number
-          - name: collection_recovery_fee
-            data_type: number
-          - name: last_pymnt_d
-            data_type: varchar
-          - name: last_pymnt_amnt
-            data_type: number
-          - name: next_pymnt_d
-            data_type: varchar
-          - name: last_credit_pull_d
-            data_type: varchar
-          - name: collections_12_mths_ex_med
-            data_type: number
-          - name: mths_since_last_major_derog
-            data_type: varchar
-          - name: policy_code
-            data_type: number
-          - name: application_type
-            data_type: varchar
-          - name: annual_inc_joint
-            data_type: varchar
-          - name: dti_joint
-            data_type: varchar
-          - name: verification_status_joint
-            data_type: varchar
-          - name: acc_now_delinq
-            data_type: number
-          - name: tot_coll_amt
-            data_type: varchar
-          - name: tot_cur_bal
-            data_type: varchar
-          - name: open_acc_6m
-            data_type: varchar
-          - name: open_il_6m
-            data_type: varchar
-          - name: open_il_12m
-            data_type: varchar
-          - name: open_il_24m
-            data_type: varchar
-          - name: mths_since_rcnt_il
-            data_type: varchar
-          - name: total_bal_il
-            data_type: varchar
-          - name: il_util
-            data_type: varchar
-          - name: open_rv_12m
-            data_type: varchar
-          - name: open_rv_24m
-            data_type: varchar
-          - name: max_bal_bc
-            data_type: varchar
-          - name: all_util
-            data_type: varchar
-          - name: total_rev_hi_lim
-            data_type: varchar
-          - name: inq_fi
-            data_type: varchar
-          - name: total_cu_tl
-            data_type: varchar
-          - name: inq_last_12m
-            data_type: varchar
-          - name: _fivetran_synced
-            data_type: timestamp_tz
-          - name: _line
-            data_type: number
-          - name: _modified
-            data_type: timestamp_tz
-          - name: _file
-            data_type: varchar
+            tests:
+              - not_null
+              - expression_is_true:
+                  expression: "open_acc >= 0"

@@ -8,7 +8,7 @@ with source as (
 
 renamed as (
 
-    select
+    select distinct
         member_id,
         {{ dbt_utils.generate_surrogate_key(['emp_length']) }} as emp_length_id,
         employ,

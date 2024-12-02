@@ -20,7 +20,7 @@ renamed as (
         issue_d,
         pymnt_plan,
         desc,
-        purpose,
+        {{ dbt_utils.generate_surrogate_key(['purpose']) }} as purpose_id,
         title,
         initial_list_status,
         application_type,
