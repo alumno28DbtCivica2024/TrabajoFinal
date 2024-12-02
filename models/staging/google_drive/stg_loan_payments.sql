@@ -2,14 +2,14 @@
 
 with source as (
 
-    select * from {{ ref('base_loan') }}
+    select * from {{ ref('payment_snapshot') }}
 
 ),
 
 renamed as (
 
     select
-        {{ dbt_utils.generate_surrogate_key(['loan_id','last_pymnt_d']) }} as payment_id,
+        payment_id,
         loan_id,
         last_pymnt_d,
         last_pymnt_amnt,
