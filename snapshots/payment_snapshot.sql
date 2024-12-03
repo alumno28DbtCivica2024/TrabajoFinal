@@ -4,8 +4,8 @@
     config(
       target_schema='snapshots',
       unique_key='loan_id',
-      strategy='check',
-      check_cols=['last_pymnt_d'],
+      strategy='timestamp',
+      updated_at='_fivetran_synced',
     )
 }}
 
