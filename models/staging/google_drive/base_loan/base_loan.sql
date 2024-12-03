@@ -10,7 +10,7 @@ with source as (
 
 {% if is_incremental() %}
 
-	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
+	  WHERE cast(_fivetran_synced as timestamp_ntz(9)) > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
 
 {% endif %}
 
