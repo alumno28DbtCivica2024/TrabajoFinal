@@ -40,7 +40,7 @@ renamed as (
         trim(url) as url,
         trim(desc) as desc,
         trim(purpose) as purpose,
-        trim(title) as title,
+        lower(trim(title)) as title,
         trim(zip_code) as zip_code,
         trim(addr_state) as addr_state,
         dti,

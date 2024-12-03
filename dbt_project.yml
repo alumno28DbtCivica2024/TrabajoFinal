@@ -41,6 +41,8 @@ models:
     staging:
       +materialized: view
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_BD" #PROYECTO_DEV_SILVER_BD
+      google_drive:
+        +schema: google_drive
     marts:
       +materialized: table
       +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_BD"
