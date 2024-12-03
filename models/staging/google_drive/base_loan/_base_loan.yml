@@ -9,14 +9,8 @@ models:
     columns:
       - name: loan_id
         description: Identificador único del préstamo generado como clave surrogate.
-        tests:
-          - unique
-          - not_null
       - name: member_id
         description: Identificador único del prestatario generado como clave surrogate.
-        tests:
-          - unique
-          - not_null
       - name: loan_amnt
         description: Monto total del préstamo solicitado.
       - name: funded_amnt

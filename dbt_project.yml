@@ -36,16 +36,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 
 models:
-  final_project:
+  my_new_project:
     # Applies to all files under models/example/
     staging:
       +materialized: view
-      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_BD" #PROYECTO_DEV_SILVER_BD
+      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_SILVER_DB" #PROYECTO_DEV_SILVER_BD
       google_drive:
         +schema: google_drive
     marts:
       +materialized: table
-      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_BD"
+      +database: "{{ env_var('DBT_ENVIRONMENTS') }}_GOLD_DB"
       core:
           +schema: core
       finanzas:
