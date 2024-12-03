@@ -1,6 +1,6 @@
 {{ config(materialized='view') }}
 
-with ftc_loan_payments as (
+with fct_loan_payments as (
 
     select * from {{ ref('fct_loan_payments') }}
 

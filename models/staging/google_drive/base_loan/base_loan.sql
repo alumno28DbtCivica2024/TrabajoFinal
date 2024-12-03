@@ -93,7 +93,7 @@ renamed as (
         inq_fi,
         total_cu_tl,
         inq_last_12_m,
-        _fivetran_synced 
+        cast(_fivetran_synced as timestamp_ntz(9)) as _fivetran_synced 
 
     from source
 
