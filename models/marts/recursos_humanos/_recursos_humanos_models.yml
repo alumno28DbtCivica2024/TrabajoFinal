@@ -1,0 +1,161 @@
+
+version: 2
+
+models:
+  - name: dim_emp_length
+    description: ""
+    columns:
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length
+        data_type: varchar
+        description: ""
+
+  - name: dim_members
+    description: ""
+    columns:
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: employ
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: annual_inc
+        data_type: float
+        description: ""
+
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: addr_state
+        data_type: varchar
+        description: ""
+
+      - name: dti
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: dim_verification_status
+    description: ""
+    columns:
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: verification_status
+        data_type: varchar
+        description: ""
+
+  - name: dim_home_ownership
+    description: ""
+    columns:
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership
+        data_type: varchar
+        description: ""
+
+  - name: dim_zip_code
+    description: ""
+    columns:
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code
+        data_type: varchar
+        description: ""
+        
+  - name: fct_credit_history_member
+    description: ""
+    columns:
+      - name: history_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: delinq_2_yrs
+        data_type: number
+        description: ""
+
+      - name: earliest_cr_line
+        data_type: varchar
+        description: ""
+
+      - name: inq_last_6_mths
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_delinq
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_record
+        data_type: number
+        description: ""
+
+      - name: open_acc
+        data_type: number
+        description: ""
+
+      - name: pub_rec
+        data_type: number
+        description: ""
+
+      - name: revol_bal
+        data_type: float
+        description: ""
+
+      - name: revol_util
+        data_type: float
+        description: ""
+
+      - name: total_acc
+        data_type: number
+        description: ""
+
+      - name: last_credit_pull_d
+        data_type: varchar
+        description: ""
+
+      - name: collections_12_mths_ex_med
+        data_type: float
+        description: ""
+
+      - name: mths_since_last_major_derog
+        data_type: number
+        description: ""
+
+      - name: history_date
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
