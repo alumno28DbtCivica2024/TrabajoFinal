@@ -52,3 +52,5 @@ models:
           +schema: finanzas
       recursos_humanos:
           +schema: recursos_humanos
+      data_marts:
+          +schema: data_marts
