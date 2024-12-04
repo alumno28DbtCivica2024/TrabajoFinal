@@ -1,0 +1,333 @@
+
+version: 2
+
+models:
+  - name: stg_credit_history_member
+    description: ""
+    columns:
+      - name: history_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: delinq_2_yrs
+        data_type: number
+        description: ""
+
+      - name: earliest_cr_line
+        data_type: varchar
+        description: ""
+
+      - name: inq_last_6_mths
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_delinq
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_record
+        data_type: number
+        description: ""
+
+      - name: open_acc
+        data_type: number
+        description: ""
+
+      - name: pub_rec
+        data_type: number
+        description: ""
+
+      - name: revol_bal
+        data_type: float
+        description: ""
+
+      - name: revol_util
+        data_type: float
+        description: ""
+
+      - name: total_acc
+        data_type: number
+        description: ""
+
+      - name: last_credit_pull_d
+        data_type: varchar
+        description: ""
+
+      - name: collections_12_mths_ex_med
+        data_type: float
+        description: ""
+
+      - name: mths_since_last_major_derog
+        data_type: number
+        description: ""
+
+      - name: history_date
+        data_type: timestamp_tz
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_tz
+        description: ""
+
+  - name: stg_emp_length
+    description: ""
+    columns:
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length
+        data_type: varchar
+        description: ""
+
+  - name: stg_home_ownership
+    description: ""
+    columns:
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership
+        data_type: varchar
+        description: ""
+
+  - name: stg_loan
+    description: ""
+    columns:
+      - name: loan_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_amnt
+        data_type: number
+        description: ""
+
+      - name: term_months
+        data_type: number
+        description: ""
+
+      - name: int_rate
+        data_type: float
+        description: ""
+
+      - name: monthly_fee
+        data_type: float
+        description: ""
+
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: sub_grade
+        data_type: varchar
+        description: ""
+
+      - name: issue_d
+        data_type: varchar
+        description: ""
+
+      - name: pymnt_plan
+        data_type: boolean
+        description: ""
+
+      - name: desc
+        data_type: varchar
+        description: ""
+
+      - name: purpose_id
+        data_type: varchar
+        description: ""
+
+      - name: title
+        data_type: varchar
+        description: ""
+
+      - name: initial_list_status
+        data_type: varchar
+        description: ""
+
+      - name: application_type
+        data_type: varchar
+        description: ""
+
+      - name: policy_code
+        data_type: varchar
+        description: ""
+
+      - name: funded_amnt
+        data_type: number
+        description: ""
+
+      - name: funded_amnt_inv
+        data_type: number
+        description: ""
+
+      - name: loan_status_id
+        data_type: varchar
+        description: ""
+
+      - name: out_prncp
+        data_type: float
+        description: ""
+
+      - name: out_prncp_inv
+        data_type: float
+        description: ""
+
+      - name: total_pymnt
+        data_type: float
+        description: ""
+
+      - name: total_pymnt_inv
+        data_type: float
+        description: ""
+
+      - name: total_rec_prncp
+        data_type: float
+        description: ""
+
+      - name: total_rec_int
+        data_type: float
+        description: ""
+
+      - name: total_rec_late_fee
+        data_type: float
+        description: ""
+
+      - name: recoveries
+        data_type: float
+        description: ""
+
+      - name: collection_recovery_fee
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_tz
+        description: ""
+
+  - name: stg_loan_status
+    description: ""
+    columns:
+      - name: loan_status_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_status
+        data_type: varchar
+        description: ""
+
+  - name: stg_per_info_members
+    description: ""
+    columns:
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: employ
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: annual_inc
+        data_type: float
+        description: ""
+
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: addr_state
+        data_type: varchar
+        description: ""
+
+      - name: dti
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_tz
+        description: ""
+
+  - name: stg_purpose
+    description: ""
+    columns:
+      - name: purpose_id
+        data_type: varchar
+        description: ""
+
+      - name: purpose
+        data_type: varchar
+        description: ""
+
+  - name: stg_verification_status
+    description: ""
+    columns:
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: verification_status
+        data_type: varchar
+        description: ""
+
+  - name: stg_zip_code
+    description: ""
+    columns:
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code
+        data_type: varchar
+        description: ""
+
+  - name: stg_loan_payments
+    description: ""
+    columns:
+      - name: payment_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_id
+        data_type: varchar
+        description: ""
+
+      - name: last_pymnt_d
+        data_type: varchar
+        description: ""
+
+      - name: last_pymnt_amnt
+        data_type: float
+        description: ""
+
+      - name: next_pymnt_d
+        data_type: varchar
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: timestamp_ntz
+        description: ""

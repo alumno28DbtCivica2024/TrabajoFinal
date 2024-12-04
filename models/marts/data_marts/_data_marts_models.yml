@@ -1,0 +1,133 @@
+
+version: 2
+
+models:
+  - name: mart_general_loans
+    description: ""
+    columns:
+      - name: grado_riesgo
+        data_type: varchar
+        description: ""
+
+      - name: proposito
+        data_type: varchar
+        description: ""
+
+      - name: numero_solicitudes_prestamos
+        data_type: number
+        description: ""
+
+      - name: suma_capital_pedido
+        data_type: number
+        description: ""
+
+      - name: media_interes
+        data_type: float
+        description: ""
+
+      - name: suma_capital_financiado
+        data_type: number
+        description: ""
+
+      - name: ganancias_esperadas
+        data_type: float
+        description: ""
+
+      - name: total_pagos_recibidos
+        data_type: float
+        description: ""
+
+  - name: mart_payments_history
+    description: ""
+    columns:
+      - name: anio_aceptacion
+        data_type: number
+        description: ""
+
+      - name: mes_aceptacion
+        data_type: number
+        description: ""
+
+      - name: count(*)
+        data_type: number
+        description: ""
+
+      - name: monto_pago
+        data_type: float
+        description: ""
+
+  - name: mart_loan_acceptance_and_state
+    description: ""
+    columns:
+      - name: loan_status
+        data_type: varchar
+        description: ""
+
+      - name: anio_aceptacion
+        data_type: number
+        description: ""
+
+      - name: mes_aceptacion
+        data_type: number
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+  - name: mart_loan_char
+    description: ""
+    columns:
+      - name: numero_meses
+        data_type: number
+        description: ""
+
+      - name: plan_pago
+        data_type: boolean
+        description: ""
+
+      - name: tipo_prestamo
+        data_type: varchar
+        description: ""
+
+      - name: estado_prestamo
+        data_type: varchar
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+  - name: mart_failed_loans
+    description: ""
+    columns:
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+      - name: recaudacion_penalizaciones
+        data_type: float
+        description: ""
+
+      - name: recuperacion_tras_incumplimiento
+        data_type: float
+        description: ""
+
+      - name: costes_recuperacion
+        data_type: float
+        description: ""
+
+  - name: mart_grade_efficiency
+    description: ""
+    columns:
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: num_clientes_delincuentes
+        data_type: number
+        description: ""

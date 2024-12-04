@@ -1,0 +1,186 @@
+
+version: 2
+
+models:
+  - name: fct_loan_state
+    description: ""
+    columns:
+      - name: loan_id
+        data_type: varchar
+        description: ""
+
+      - name: funded_amnt
+        data_type: number
+        description: ""
+
+      - name: funded_amnt_inv
+        data_type: number
+        description: ""
+
+      - name: loan_status_id
+        data_type: varchar
+        description: ""
+
+      - name: out_prncp
+        data_type: float
+        description: ""
+
+      - name: out_prncp_inv
+        data_type: float
+        description: ""
+
+      - name: total_pymnt
+        data_type: float
+        description: ""
+
+      - name: total_pymnt_inv
+        data_type: float
+        description: ""
+
+      - name: total_rec_prncp
+        data_type: float
+        description: ""
+
+      - name: total_rec_int
+        data_type: float
+        description: ""
+
+      - name: total_rec_late_fee
+        data_type: float
+        description: ""
+
+      - name: recoveries
+        data_type: float
+        description: ""
+
+      - name: collection_recovery_fee
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: fct_loan_payments
+    description: ""
+    columns:
+      - name: payment_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_id
+        data_type: varchar
+        description: ""
+
+      - name: last_pymnt_d
+        data_type: varchar
+        description: ""
+
+      - name: last_pymnt_amnt
+        data_type: float
+        description: ""
+
+      - name: next_pymnt_d
+        data_type: varchar
+        description: ""
+
+      - name: dbt_valid_from
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: dbt_valid_to
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: fct_loan_petition
+    description: ""
+    columns:
+      - name: loan_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_amnt
+        data_type: number
+        description: ""
+
+      - name: term_months
+        data_type: number
+        description: ""
+
+      - name: int_rate
+        data_type: float
+        description: ""
+
+      - name: monthly_fee
+        data_type: float
+        description: ""
+
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: sub_grade
+        data_type: varchar
+        description: ""
+
+      - name: issue_d
+        data_type: varchar
+        description: ""
+
+      - name: pymnt_plan
+        data_type: boolean
+        description: ""
+
+      - name: desc
+        data_type: varchar
+        description: ""
+
+      - name: purpose_id
+        data_type: varchar
+        description: ""
+
+      - name: title
+        data_type: varchar
+        description: ""
+
+      - name: initial_list_status
+        data_type: varchar
+        description: ""
+
+      - name: application_type
+        data_type: varchar
+        description: ""
+
+      - name: policy_code
+        data_type: varchar
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: dim_purpose
+    description: ""
+    columns:
+      - name: purpose_id
+        data_type: varchar
+        description: ""
+
+      - name: purpose
+        data_type: varchar
+        description: ""
+
+  - name: dim_loan_status
+    description: ""
+    columns:
+      - name: loan_status_id
+        data_type: varchar
+        description: ""
+
+      - name: loan_status
+        data_type: varchar
+        description: ""

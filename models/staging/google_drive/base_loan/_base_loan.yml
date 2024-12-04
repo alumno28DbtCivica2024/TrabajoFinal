@@ -1,0 +1,159 @@
+version: 2
+
+models:
+  - name: base_loan
+    description: >
+      Vista que normaliza y transforma los datos del conjunto de préstamos cargado desde Google Drive. 
+      Proporciona información detallada sobre los préstamos, incluyendo montos, tasas, términos, 
+      información del prestatario y datos relacionados con pagos y estados del préstamo.
+    columns:
+      - name: loan_id
+        description: Identificador único del préstamo generado como clave surrogate.
+      - name: member_id
+        description: Identificador único del prestatario generado como clave surrogate.
+      - name: loan_amnt
+        description: Monto total del préstamo solicitado.
+      - name: funded_amnt
+        description: Monto total financiado para el préstamo.
+      - name: funded_amnt_inv
+        description: Monto total invertido en el préstamo por los inversionistas.
+      - name: term_months
+        description: Plazo del préstamo en meses.
+      - name: int_rate
+        description: Tasa de interés aplicada al préstamo.
+      - name: monthly_fee
+        description: Cuota mensual asociada al préstamo.
+      - name: grade
+        description: Clasificación del préstamo basada en el riesgo crediticio.
+      - name: sub_grade
+        description: Subclasificación del préstamo basada en el riesgo crediticio.
+      - name: employ
+        description: Título del empleo del prestatario o 'Unemployed' si no se especifica.
+      - name: emp_length
+        description: Años de empleo del prestatario en formato textual.
+      - name: home_ownership
+        description: Estado de propiedad de vivienda del prestatario.
+      - name: annual_inc
+        description: Ingreso anual reportado del prestatario.
+      - name: verification_status
+        description: Estado de verificación del ingreso del prestatario.
+      - name: issue_d
+        description: Fecha de emisión del préstamo en formato MM-YYYY.
+      - name: loan_status
+        description: Estado actual del préstamo.
+      - name: pymnt_plan
+        description: Indica si el prestatario está en un plan de pagos (TRUE/FALSE).
+      - name: url
+        description: Enlace al detalle del préstamo.
+      - name: desc
+        description: Descripción proporcionada para el préstamo.
+      - name: purpose
+        description: Propósito del préstamo.
+      - name: title
+        description: Título del préstamo.
+      - name: zip_code
+        description: Código postal del prestatario.
+      - name: addr_state
+        description: Estado de residencia del prestatario.
+      - name: dti
+        description: Relación deuda-ingreso del prestatario.
+      - name: delinq_2_yrs
+        description: Número de cuentas con retrasos de más de 30 días en los últimos 2 años.
+      - name: earliest_cr_line
+        description: Fecha de apertura de la línea de crédito más antigua en formato MM-YYYY.
+      - name: inq_last_6_mths
+        description: Número de consultas de crédito en los últimos 6 meses.
+      - name: mths_since_last_delinq
+        description: Meses desde el último incumplimiento reportado.
+      - name: mths_since_last_record
+        description: Meses desde el último registro público negativo.
+      - name: open_acc
+        description: Número total de cuentas de crédito abiertas.
+      - name: pub_rec
+        description: Número de registros públicos reportados.
+      - name: revol_bal
+        description: Saldo rotativo total del prestatario.
+      - name: revol_util
+        description: Uso del crédito rotativo como porcentaje.
+      - name: total_acc
+        description: Número total de cuentas de crédito.
+      - name: initial_list_status
+        description: Estado inicial del listado del préstamo ('funded' o 'waitlist').
+      - name: out_prncp
+        description: Principal restante pendiente.
+      - name: out_prncp_inv
+        description: Principal restante pendiente para inversionistas.
+      - name: total_pymnt
+        description: Pagos totales realizados redondeados a 2 decimales.
+      - name: total_pymnt_inv
+        description: Pagos totales realizados por inversionistas.
+      - name: total_rec_prncp
+        description: Principal total recibido.
+      - name: total_rec_int
+        description: Intereses totales recibidos.
+      - name: total_rec_late_fee
+        description: Multas totales por pagos tardíos recibidas.
+      - name: recoveries
+        description: Monto recuperado en préstamos impagos.
+      - name: collection_recovery_fee
+        description: Cargos por recuperación de colecciones redondeados a 2 decimales.
+      - name: last_pymnt_d
+        description: Fecha del último pago recibido en formato MM-YYYY.
+      - name: last_pymnt_amnt
+        description: Monto del último pago recibido.
+      - name: next_pymnt_d
+        description: Fecha del próximo pago programado en formato MM-YYYY.
+      - name: last_credit_pull_d
+        description: Fecha de la última consulta de crédito en formato MM-YYYY.
+      - name: collections_12_mths_ex_med
+        description: Cantidad de cobros en los últimos 12 meses excluyendo lo médico.
+      - name: mths_since_last_major_derog
+        description: Meses desde la última falta grave reportada.
+      - name: policy_code
+        description: Indica si el préstamo pertenece a la política 'Public' o 'No public'.
+      - name: application_type
+        description: Tipo de solicitud del préstamo ('Individual' o 'Joint').
+      - name: annual_inc_joint
+        description: Ingreso anual combinado para préstamos conjuntos.
+      - name: dti_joint
+        description: Relación deuda-ingreso combinada para préstamos conjuntos.
+      - name: verification_status_joint
+        description: Estado de verificación del ingreso combinado para préstamos conjuntos.
+      - name: acc_now_delinq
+        description: Número de cuentas actualmente en incumplimiento.
+      - name: tot_coll_amt
+        description: Monto total en colecciones.
+      - name: tot_cur_bal
+        description: Balance total actual en todas las cuentas.
+      - name: open_acc_6_m
+        description: Número de cuentas abiertas en los últimos 6 meses.
+      - name: open_il_6_m
+        description: Número de líneas de crédito a plazos abiertas en los últimos 6 meses.
+      - name: open_il_12_m
+        description: Número de líneas de crédito a plazos abiertas en los últimos 12 meses.
+      - name: open_il_24_m
+        description: Número de líneas de crédito a plazos abiertas en los últimos 24 meses.
+      - name: mths_since_rcnt_il
+        description: Meses desde la última línea de crédito a plazos abierta.
+      - name: total_bal_il
+        description: Balance total en líneas de crédito a plazos.
+      - name: il_util
+        description: Utilización de líneas de crédito a plazos como porcentaje.
+      - name: open_rv_12_m
+        description: Número de cuentas de crédito renovables abiertas en los últimos 12 meses.
+      - name: open_rv_24_m
+        description: Número de cuentas de crédito renovables abiertas en los últimos 24 meses.
+      - name: max_bal_bc
+        description: Saldo máximo en cuentas de tarjetas de crédito.
+      - name: all_util
+        description: Utilización de crédito total como porcentaje.
+      - name: total_rev_hi_lim
+        description: Límite total en cuentas renovables de alto saldo.
+      - name: inq_fi
+        description: Número de consultas de crédito realizadas por instituciones financieras.
+      - name: total_cu_tl
+        description: Número total de cuentas comerciales.
+      - name: inq_last_12_m
+        description: Número de consultas de crédito en los últimos 12 meses.
+      - name: _fivetran_synced
+        description: Marca de sincronización por Fivetran.
