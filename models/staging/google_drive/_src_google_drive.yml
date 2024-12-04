@@ -10,28 +10,46 @@ sources:
         columns:
           - name: addr_state
             description: "Estado proporcionado por el prestatario en la solicitud de préstamo"
-          - name: accNowDelinq
+          - name: acc_now_delinq
             description: "Cantidad de cuentas en las que el prestatario está actualmente en mora"
+            tests:
+              - positive_values
           - name: all_util
             description: "Saldo en relación con el límite de crédito en todas las cuentas"
           - name: annual_inc
             description: "Ingreso anual autodeclarado proporcionado por el prestatario durante el registro"
+            tests:
+              - positive_values
           - name: annual_inc_joint
             description: "Ingreso anual combinado autodeclarado proporcionado por los co-prestatarios durante el registro"
+            tests:
+              - positive_values
           - name: application_type
             description: "Indica si el préstamo es una solicitud individual o conjunta con dos co-prestatarios"
+            tests:
+              - not_null
           - name: collection_recovery_fee
             description: "Cargo por recuperación posterior a la cancelación de deuda"
+            tests:
+              - positive_values
           - name: collections_12_mths_ex_med
             description: "Número de cobros en los últimos 12 meses, excluyendo cobros médicos"
-          - name: delinq_2yrs
+            tests:
+              - positive_values
+          - name: delinq_2_yrs
             description: "Cantidad de incidencias de morosidad de más de 30 días en los últimos 2 años"
+            tests:
+              - positive_values
           - name: desc
             description: "Descripción del préstamo proporcionada por el prestatario"
           - name: dti
             description: "Relación deuda-ingresos calculada con los pagos mensuales totales del prestatario"
+            tests:
+              - positive_values
           - name: dti_joint
             description: "Relación deuda-ingresos calculada para los co-prestatarios"
+            tests:
+              - positive_values
           - name: earliest_cr_line
             description: "Mes en que se abrió la primera línea de crédito reportada del prestatario"
           - name: emp_length
@@ -40,44 +58,72 @@ sources:
             description: "Título del trabajo proporcionado por el prestatario al solicitar el préstamo"
           - name: funded_amnt
             description: "Cantidad total comprometida para ese préstamo en ese momento"
+            tests:
+              - positive_values
           - name: funded_amnt_inv
             description: "Cantidad total comprometida por los inversores para ese préstamo en ese momento"
+            tests:
+              - positive_values
           - name: grade
             description: "Grado del préstamo asignado por LC"
           - name: home_ownership
             description: "Estado de propiedad de la vivienda proporcionado por el prestatario durante el registro"
           - name: id
             description: "ID único asignado por LC para la lista de préstamos"
+            tests:
+              - not_null
+              - unique
           - name: il_util
             description: "Relación del saldo actual total con el crédito máximo en cuentas de cuota"
+            tests:
+              - positive_values
           - name: initial_list_status
             description: "Estado inicial de la lista del préstamo"
-          - name: inq_last_6mths
+            tests:
+              - not_null
+          - name: inq_last_6_mths
             description: "Número de consultas de crédito en los últimos 6 meses"
+            tests:
+              - positive_values
           - name: inq_fi
             description: "Número de consultas financieras personales"
-          - name: inq_last_12m
+            tests:
+              - positive_values
+          - name: inq_last_12_m
             description: "Número de consultas de crédito en los últimos 12 meses"
           - name: installment
             description: "Pago mensual que el prestatario debe si se origina el préstamo"
+            tests:
+              - positive_values
           - name: int_rate
             description: "Tasa de interés del préstamo"
+            tests:
+              - positive_values
           - name: issue_d
             description: "Mes en el que se financió el préstamo"
           - name: last_credit_pull_d
             description: "Mes más reciente en que LC verificó el crédito para este préstamo"
           - name: last_pymnt_amnt
             description: "Último monto total recibido como pago"
+            tests:
+              - positive_values
           - name: last_pymnt_d
             description: "Último mes en que se recibió un pago"
           - name: loan_amnt
             description: "Monto del préstamo solicitado por el prestatario"
+            tests:
+              - positive_values
           - name: loan_status
             description: "Estado actual del préstamo"
           - name: max_bal_bc
             description: "Saldo máximo actual adeudado en todas las cuentas renovables"
+            tests:
+              - positive_values
           - name: member_id
             description: "ID único asignado por LC para el miembro prestatario"
+            tests:
+              - not_null
+              - unique
           - name: mths_since_last_delinq
             description: "Meses desde la última morosidad del prestatario"
           - name: mths_since_last_major_derog
@@ -90,36 +136,62 @@ sources:
             description: "Fecha del próximo pago programado"
           - name: open_acc
             description: "Cantidad de líneas de crédito abiertas en el archivo de crédito del prestatario"
-          - name: open_acc_6m
+            tests:
+              - positive_values
+          - name: open_acc_6_m
             description: "Número de transacciones abiertas en los últimos 6 meses"
-          - name: open_il_6m
+            tests:
+              - positive_values
+          - name: open_il_6_m
             description: "Número de transacciones activas de cuota actualmente"
-          - name: open_il_12m
+            tests:
+              - positive_values
+          - name: open_il_12_m
             description: "Número de cuentas de cuota abiertas en los últimos 12 meses"
-          - name: open_il_24m
+            tests:
+              - positive_values
+          - name: open_il_24_m
             description: "Número de cuentas de cuota abiertas en los últimos 24 meses"
-          - name: open_rv_12m
+            tests:
+              - positive_values
+          - name: open_rv_12_m
             description: "Número de transacciones renovables abiertas en los últimos 12 meses"
-          - name: open_rv_24m
+            tests:
+              - positive_values
+          - name: open_rv_24_m
             description: "Número de transacciones renovables abiertas en los últimos 24 meses"
+            tests:
+              - positive_values
           - name: out_prncp
             description: "Principal pendiente restante del monto total financiado"
+            tests:
+              - positive_values
           - name: out_prncp_inv
             description: "Principal pendiente restante para la parte financiada por inversores"
+            tests:
+              - positive_values
           - name: policy_code
             description: "Código de política disponible públicamente"
           - name: pub_rec
             description: "Número de registros públicos despectivos"
+            tests:
+              - positive_values
           - name: purpose
             description: "Categoría proporcionada por el prestatario para la solicitud de préstamo"
           - name: pymnt_plan
             description: "Indica si se ha establecido un plan de pago para el préstamo"
           - name: recoveries
             description: "Recuperación bruta posterior a la cancelación de deuda"
+            tests:
+              - positive_values
           - name: revol_bal
             description: "Saldo renovable total de crédito"
+            tests:
+              - positive_values
           - name: revol_util
             description: "Tasa de utilización de la línea renovable"
+            tests:
+              - positive_values
           - name: sub_grade
             description: "Subgrado del préstamo asignado por LC"
           - name: term
@@ -128,24 +200,44 @@ sources:
             description: "Título del préstamo proporcionado por el prestatario"
           - name: tot_coll_amt
             description: "Monto total de cobros adeudados alguna vez"
+            tests:
+              - positive_values
           - name: tot_cur_bal
             description: "Saldo actual total de todas las cuentas"
+            tests:
+              - positive_values
           - name: total_acc
             description: "Número total de líneas de crédito actuales en el archivo de crédito del prestatario"
+            tests:
+              - positive_values
           - name: total_bal_il
             description: "Saldo actual total de todas las cuentas de cuota"
+            tests:
+              - positive_values
           - name: total_cu_tl
             description: "Número de transacciones financieras"
+            tests:
+              - positive_values
           - name: total_pymnt
             description: "Pagos recibidos hasta la fecha para el monto total financiado"
+            tests:
+              - positive_values
           - name: total_pymnt_inv
             description: "Pagos recibidos hasta la fecha para la parte financiada por inversores"
+            tests:
+              - positive_values
           - name: total_rec_int
             description: "Intereses recibidos hasta la fecha"
+            tests:
+              - positive_values
           - name: total_rec_late_fee
             description: "Cargos por mora recibidos hasta la fecha"
+            tests:
+              - positive_values
           - name: total_rec_prncp
             description: "Principal recibido hasta la fecha"
+            tests:
+              - positive_values
           - name: total_rev_hi_lim
             description: "Límite máximo de crédito renovable"
           - name: url
@@ -157,10 +249,8 @@ sources:
           - name: zip_code
             description: "Los primeros 3 números del código postal proporcionado por el prestatario"
           - name: _file
-            description: ""
+            description: "Documento del que provienen los datos"
           - name: _fivetran_synced
-            description: ""
-          - name: _line
-            description: ""
+            description: "Fecha de ingesta"
           - name: _modified
-            description: ""
+            description: "Fecha de modificación"
