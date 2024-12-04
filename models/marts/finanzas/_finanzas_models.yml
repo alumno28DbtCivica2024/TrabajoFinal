@@ -184,3 +184,291 @@ models:
       - name: loan_status
         data_type: varchar
         description: ""
+
+  - name: dim_emp_length
+    description: ""
+    columns:
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length
+        data_type: varchar
+        description: ""
+
+  - name: dim_members
+    description: ""
+    columns:
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: employ
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: annual_inc
+        data_type: float
+        description: ""
+
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: addr_state
+        data_type: varchar
+        description: ""
+
+      - name: dti
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: dim_verification_status
+    description: ""
+    columns:
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: verification_status
+        data_type: varchar
+        description: ""
+
+  - name: dim_home_ownership
+    description: ""
+    columns:
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership
+        data_type: varchar
+        description: ""
+
+  - name: dim_zip_code
+    description: ""
+    columns:
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code
+        data_type: varchar
+        description: ""
+        
+  - name: fct_credit_history_member
+    description: ""
+    columns:
+      - name: history_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: delinq_2_yrs
+        data_type: number
+        description: ""
+
+      - name: earliest_cr_line
+        data_type: varchar
+        description: ""
+
+      - name: inq_last_6_mths
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_delinq
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_record
+        data_type: number
+        description: ""
+
+      - name: open_acc
+        data_type: number
+        description: ""
+
+      - name: pub_rec
+        data_type: number
+        description: ""
+
+      - name: revol_bal
+        data_type: float
+        description: ""
+
+      - name: revol_util
+        data_type: float
+        description: ""
+
+      - name: total_acc
+        data_type: number
+        description: ""
+
+      - name: last_credit_pull_d
+        data_type: varchar
+        description: ""
+
+      - name: collections_12_mths_ex_med
+        data_type: float
+        description: ""
+
+      - name: mths_since_last_major_derog
+        data_type: number
+        description: ""
+
+      - name: history_date
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: mart_general_loans
+    description: ""
+    columns:
+      - name: grado_riesgo
+        data_type: varchar
+        description: ""
+
+      - name: proposito
+        data_type: varchar
+        description: ""
+
+      - name: numero_solicitudes_prestamos
+        data_type: number
+        description: ""
+
+      - name: suma_capital_pedido
+        data_type: number
+        description: ""
+
+      - name: media_interes
+        data_type: float
+        description: ""
+
+      - name: suma_capital_financiado
+        data_type: number
+        description: ""
+
+      - name: ganancias_esperadas
+        data_type: float
+        description: ""
+
+      - name: total_pagos_recibidos
+        data_type: float
+        description: ""
+
+  - name: mart_payments_history
+    description: ""
+    columns:
+      - name: anio_aceptacion
+        data_type: number
+        description: ""
+
+      - name: mes_aceptacion
+        data_type: number
+        description: ""
+
+      - name: count(*)
+        data_type: number
+        description: ""
+
+      - name: monto_pago
+        data_type: float
+        description: ""
+
+  - name: mart_loan_acceptance_and_state
+    description: ""
+    columns:
+      - name: loan_status
+        data_type: varchar
+        description: ""
+
+      - name: anio_aceptacion
+        data_type: number
+        description: ""
+
+      - name: mes_aceptacion
+        data_type: number
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+  - name: mart_loan_char
+    description: ""
+    columns:
+      - name: numero_meses
+        data_type: number
+        description: ""
+
+      - name: plan_pago
+        data_type: boolean
+        description: ""
+
+      - name: tipo_prestamo
+        data_type: varchar
+        description: ""
+
+      - name: estado_prestamo
+        data_type: varchar
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+  - name: mart_failed_loans
+    description: ""
+    columns:
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: numero_prestamos
+        data_type: number
+        description: ""
+
+      - name: recaudacion_penalizaciones
+        data_type: float
+        description: ""
+
+      - name: recuperacion_tras_incumplimiento
+        data_type: float
+        description: ""
+
+      - name: costes_recuperacion
+        data_type: float
+        description: ""
+
+  - name: mart_grade_efficiency
+    description: ""
+    columns:
+      - name: grade
+        data_type: varchar
+        description: ""
+
+      - name: num_clientes_delincuentes
+        data_type: number
+        description: ""
