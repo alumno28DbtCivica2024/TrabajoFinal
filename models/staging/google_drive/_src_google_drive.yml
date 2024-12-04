@@ -6,133 +6,161 @@ sources:
     database: alumno28_dev_bronze_db
     tables:
       - name: loan
-        description: >
-          Vista que contiene los datos de los préstamos cargados desde Google Drive. 
-          Proporciona información detallada sobre los préstamos, incluyendo montos, tasas, términos, 
-          datos del prestatario, pagos y estados de los préstamos.
-        loaded_at_field: _fivetran_synced
+        description: "Información sobre préstamos, detalles de los prestatarios y métricas del préstamo"
         columns:
-
-          - name: id
-            description: Identificador único del préstamo.
-            data_type: number
-
-          - name: member_id
-            description: Identificador único del prestatario.
-            data_type: number
-
-          - name: loan_amnt
-            description: Monto total del préstamo solicitado.
-            data_type: number
-
-          - name: funded_amnt
-            description: Monto total financiado para el préstamo.
-            data_type: number
-
-          - name: funded_amnt_inv
-            description: Monto total invertido en el préstamo por los inversionistas.
-            data_type: number
-
-          - name: term
-            description: Plazo del préstamo en meses.
-            data_type: varchar
-
-          - name: int_rate
-            description: Tasa de interés aplicada al préstamo.
-            data_type: number
-
-          - name: installment
-            description: Cuota mensual asociada al préstamo.
-            data_type: number
-
-          - name: grade
-            description: Clasificación del préstamo basada en el riesgo crediticio.
-            data_type: varchar
-
-          - name: sub_grade
-            description: Subclasificación del préstamo basada en el riesgo crediticio.
-            data_type: varchar
-
-          - name: emp_title
-            description: Título del empleo del prestatario.
-            data_type: varchar
-
-          - name: emp_length
-            description: Años de empleo del prestatario en formato textual.
-            data_type: varchar
-
-          - name: home_ownership
-            description: Estado de propiedad de vivienda del prestatario.
-            data_type: varchar
-
-          - name: annual_inc
-            description: Ingreso anual reportado del prestatario.
-            data_type: number
-
-          - name: verification_status
-            description: Estado de verificación del ingreso del prestatario.
-            data_type: varchar
-
-          - name: issue_d
-            description: Fecha de emisión del préstamo en formato MM-YYYY.
-            data_type: varchar
-
-          - name: loan_status
-            description: Estado actual del préstamo.
-            data_type: varchar
-
-          - name: pymnt_plan
-            description: Indica si el prestatario está en un plan de pagos.
-            data_type: varchar
-
-          - name: url
-            description: Enlace al detalle del préstamo.
-            data_type: varchar
-
-          - name: desc
-            description: Descripción proporcionada para el préstamo.
-            data_type: varchar
-
-          - name: purpose
-            description: Propósito del préstamo.
-            data_type: varchar
-
-          - name: title
-            description: Título del préstamo.
-            data_type: varchar
-
-          - name: zip_code
-            description: Código postal del prestatario.
-            data_type: varchar
-
           - name: addr_state
-            description: Estado de residencia del prestatario.
-            data_type: varchar
-
-          - name: dti
-            description: Relación deuda-ingreso del prestatario.
-            data_type: number
-
+            description: "Estado proporcionado por el prestatario en la solicitud de préstamo"
+          - name: accNowDelinq
+            description: "Cantidad de cuentas en las que el prestatario está actualmente en mora"
+          - name: all_util
+            description: "Saldo en relación con el límite de crédito en todas las cuentas"
+          - name: annual_inc
+            description: "Ingreso anual autodeclarado proporcionado por el prestatario durante el registro"
+          - name: annual_inc_joint
+            description: "Ingreso anual combinado autodeclarado proporcionado por los co-prestatarios durante el registro"
+          - name: application_type
+            description: "Indica si el préstamo es una solicitud individual o conjunta con dos co-prestatarios"
+          - name: collection_recovery_fee
+            description: "Cargo por recuperación posterior a la cancelación de deuda"
+          - name: collections_12_mths_ex_med
+            description: "Número de cobros en los últimos 12 meses, excluyendo cobros médicos"
           - name: delinq_2yrs
-            description: Número de cuentas con retrasos de más de 30 días en los últimos 2 años.
-            data_type: number
-
+            description: "Cantidad de incidencias de morosidad de más de 30 días en los últimos 2 años"
+          - name: desc
+            description: "Descripción del préstamo proporcionada por el prestatario"
+          - name: dti
+            description: "Relación deuda-ingresos calculada con los pagos mensuales totales del prestatario"
+          - name: dti_joint
+            description: "Relación deuda-ingresos calculada para los co-prestatarios"
           - name: earliest_cr_line
-            description: Fecha de apertura de la línea de crédito más antigua en formato MM-YYYY.
-            data_type: varchar
-
+            description: "Mes en que se abrió la primera línea de crédito reportada del prestatario"
+          - name: emp_length
+            description: "Duración del empleo en años"
+          - name: emp_title
+            description: "Título del trabajo proporcionado por el prestatario al solicitar el préstamo"
+          - name: funded_amnt
+            description: "Cantidad total comprometida para ese préstamo en ese momento"
+          - name: funded_amnt_inv
+            description: "Cantidad total comprometida por los inversores para ese préstamo en ese momento"
+          - name: grade
+            description: "Grado del préstamo asignado por LC"
+          - name: home_ownership
+            description: "Estado de propiedad de la vivienda proporcionado por el prestatario durante el registro"
+          - name: id
+            description: "ID único asignado por LC para la lista de préstamos"
+          - name: il_util
+            description: "Relación del saldo actual total con el crédito máximo en cuentas de cuota"
+          - name: initial_list_status
+            description: "Estado inicial de la lista del préstamo"
           - name: inq_last_6mths
-            description: Número de consultas de crédito en los últimos 6 meses.
-            data_type: number
-
+            description: "Número de consultas de crédito en los últimos 6 meses"
+          - name: inq_fi
+            description: "Número de consultas financieras personales"
+          - name: inq_last_12m
+            description: "Número de consultas de crédito en los últimos 12 meses"
+          - name: installment
+            description: "Pago mensual que el prestatario debe si se origina el préstamo"
+          - name: int_rate
+            description: "Tasa de interés del préstamo"
+          - name: issue_d
+            description: "Mes en el que se financió el préstamo"
+          - name: last_credit_pull_d
+            description: "Mes más reciente en que LC verificó el crédito para este préstamo"
+          - name: last_pymnt_amnt
+            description: "Último monto total recibido como pago"
+          - name: last_pymnt_d
+            description: "Último mes en que se recibió un pago"
+          - name: loan_amnt
+            description: "Monto del préstamo solicitado por el prestatario"
+          - name: loan_status
+            description: "Estado actual del préstamo"
+          - name: max_bal_bc
+            description: "Saldo máximo actual adeudado en todas las cuentas renovables"
+          - name: member_id
+            description: "ID único asignado por LC para el miembro prestatario"
           - name: mths_since_last_delinq
-            description: Meses desde el último incumplimiento reportado.
-            data_type: number
-
+            description: "Meses desde la última morosidad del prestatario"
+          - name: mths_since_last_major_derog
+            description: "Meses desde la calificación más reciente de 90 días o peor"
           - name: mths_since_last_record
-            description: Meses desde el último registro público negativo.
-            data_type: number
-
+            description: "Meses desde el último registro público"
+          - name: mths_since_rcnt_il
+            description: "Meses desde la apertura de la cuenta de cuota más reciente"
+          - name: next_pymnt_d
+            description: "Fecha del próximo pago programado"
           - name: open_acc
-            description: Número total de cuentas de crédito abiertas.
-            data_type: number
+            description: "Cantidad de líneas de crédito abiertas en el archivo de crédito del prestatario"
+          - name: open_acc_6m
+            description: "Número de transacciones abiertas en los últimos 6 meses"
+          - name: open_il_6m
+            description: "Número de transacciones activas de cuota actualmente"
+          - name: open_il_12m
+            description: "Número de cuentas de cuota abiertas en los últimos 12 meses"
+          - name: open_il_24m
+            description: "Número de cuentas de cuota abiertas en los últimos 24 meses"
+          - name: open_rv_12m
+            description: "Número de transacciones renovables abiertas en los últimos 12 meses"
+          - name: open_rv_24m
+            description: "Número de transacciones renovables abiertas en los últimos 24 meses"
+          - name: out_prncp
+            description: "Principal pendiente restante del monto total financiado"
+          - name: out_prncp_inv
+            description: "Principal pendiente restante para la parte financiada por inversores"
+          - name: policy_code
+            description: "Código de política disponible públicamente"
+          - name: pub_rec
+            description: "Número de registros públicos despectivos"
+          - name: purpose
+            description: "Categoría proporcionada por el prestatario para la solicitud de préstamo"
+          - name: pymnt_plan
+            description: "Indica si se ha establecido un plan de pago para el préstamo"
+          - name: recoveries
+            description: "Recuperación bruta posterior a la cancelación de deuda"
+          - name: revol_bal
+            description: "Saldo renovable total de crédito"
+          - name: revol_util
+            description: "Tasa de utilización de la línea renovable"
+          - name: sub_grade
+            description: "Subgrado del préstamo asignado por LC"
+          - name: term
+            description: "Número de pagos del préstamo en meses"
+          - name: title
+            description: "Título del préstamo proporcionado por el prestatario"
+          - name: tot_coll_amt
+            description: "Monto total de cobros adeudados alguna vez"
+          - name: tot_cur_bal
+            description: "Saldo actual total de todas las cuentas"
+          - name: total_acc
+            description: "Número total de líneas de crédito actuales en el archivo de crédito del prestatario"
+          - name: total_bal_il
+            description: "Saldo actual total de todas las cuentas de cuota"
+          - name: total_cu_tl
+            description: "Número de transacciones financieras"
+          - name: total_pymnt
+            description: "Pagos recibidos hasta la fecha para el monto total financiado"
+          - name: total_pymnt_inv
+            description: "Pagos recibidos hasta la fecha para la parte financiada por inversores"
+          - name: total_rec_int
+            description: "Intereses recibidos hasta la fecha"
+          - name: total_rec_late_fee
+            description: "Cargos por mora recibidos hasta la fecha"
+          - name: total_rec_prncp
+            description: "Principal recibido hasta la fecha"
+          - name: total_rev_hi_lim
+            description: "Límite máximo de crédito renovable"
+          - name: url
+            description: "URL de la página de LC con datos de la lista"
+          - name: verified_status
+            description: "Indica si el ingreso individual del prestatario fue verificado por LC"
+          - name: verified_status_joint
+            description: "Indica si el ingreso conjunto de los co-prestatarios fue verificado por LC"
+          - name: zip_code
+            description: "Los primeros 3 números del código postal proporcionado por el prestatario"
+          - name: _file
+            description: ""
+          - name: _fivetran_synced
+            description: ""
+          - name: _line
+            description: ""
+          - name: _modified
+            description: ""
