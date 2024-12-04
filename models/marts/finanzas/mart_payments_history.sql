@@ -15,10 +15,10 @@ fct_loan_petition as (
 payments_history as (
 
     select
-        year(to_date(B.last_pymnt_d, 'MM-YYYY')) as anio_aceptacion,  
-        month(to_date(B.last_pymnt_d, 'MM-YYYY')) as mes_aceptacion,
-        count(*),
-        floor(avg(B.last_pymnt_amnt)) as monto_pago
+        year(to_date(B.last_pymnt_d, 'MM-YYYY')) as anio_pago,  
+        month(to_date(B.last_pymnt_d, 'MM-YYYY')) as mes_pago,
+        count(*) as num_pagos,
+        floor(avg(B.last_pymnt_amnt)) as media_pago
     from fct_loan_payments B
     right join fct_loan_petition A
     on A.loan_id=B.loan_id

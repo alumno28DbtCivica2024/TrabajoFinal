@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 with fct_loan_petition as (
 
@@ -15,7 +15,7 @@ fct_loan_state as (
 failed_loans as (
 
     select 
-    grade,
+        grade,
         count(*) as numero_prestamos,
         floor(sum(total_rec_late_fee)) as recaudacion_penalizaciones,
         floor(sum(recoveries)) as recuperacion_tras_incumplimiento,
