@@ -9,8 +9,14 @@ models:
     columns:
       - name: loan_id
         description: Identificador único del préstamo generado como clave surrogate.
+        tests:
+          - not_null
+          - unique
       - name: member_id
         description: Identificador único del prestatario generado como clave surrogate.
+        tests:
+          - not_null
+          - unique
       - name: loan_amnt
         description: Monto total del préstamo solicitado.
       - name: funded_amnt
@@ -21,34 +27,54 @@ models:
         description: Plazo del préstamo en meses.
       - name: int_rate
         description: Tasa de interés aplicada al préstamo.
+        tests:
+          - not_null
       - name: monthly_fee
         description: Cuota mensual asociada al préstamo.
+        tests:
+          - not_null
       - name: grade
         description: Clasificación del préstamo basada en el riesgo crediticio.
+        tests:
+          - not_null
       - name: sub_grade
         description: Subclasificación del préstamo basada en el riesgo crediticio.
+        tests:
+          - not_null
       - name: employ
         description: Título del empleo del prestatario o 'Unemployed' si no se especifica.
       - name: emp_length
         description: Años de empleo del prestatario en formato textual.
       - name: home_ownership
         description: Estado de propiedad de vivienda del prestatario.
+        tests:
+          - not_null
       - name: annual_inc
         description: Ingreso anual reportado del prestatario.
+        tests:
+          - not_null
       - name: verification_status
         description: Estado de verificación del ingreso del prestatario.
+        tests:
+          - not_null
       - name: issue_d
         description: Fecha de emisión del préstamo en formato MM-YYYY.
       - name: loan_status
         description: Estado actual del préstamo.
+        tests:
+          - not_null
       - name: pymnt_plan
         description: Indica si el prestatario está en un plan de pagos (TRUE/FALSE).
+        tests:
+          - not_null
       - name: url
         description: Enlace al detalle del préstamo.
       - name: desc
         description: Descripción proporcionada para el préstamo.
       - name: purpose
         description: Propósito del préstamo.
+        tests:
+          - not_null
       - name: title
         description: Título del préstamo.
       - name: zip_code
@@ -57,6 +83,8 @@ models:
         description: Estado de residencia del prestatario.
       - name: dti
         description: Relación deuda-ingreso del prestatario.
+        tests:
+          - not_null
       - name: delinq_2_yrs
         description: Número de cuentas con retrasos de más de 30 días en los últimos 2 años.
       - name: earliest_cr_line
@@ -155,5 +183,7 @@ models:
         description: Número total de cuentas comerciales.
       - name: inq_last_12_m
         description: Número de consultas de crédito en los últimos 12 meses.
+        tests:
+          - positive_values
       - name: _fivetran_synced
         description: Marca de sincronización por Fivetran.

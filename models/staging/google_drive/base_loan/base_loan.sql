@@ -32,7 +32,7 @@ renamed as (
         coalesce(emp_title, 'Unemployed') as employ,
         case when trim(emp_length)='n/a' then null else trim(emp_length) end as emp_length,
         trim(home_ownership) as home_ownership,
-        floor(annual_inc) as annual_inc,
+        floor(case when annual_inc is null then 0 else annual_inc end) as annual_inc,
         trim(verification_status) as verification_status,
         to_char(to_date(issue_d, 'MON-YYYY'), 'MM-YYYY') as issue_d,
         trim(loan_status) as loan_status,
