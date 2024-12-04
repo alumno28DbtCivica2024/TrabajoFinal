@@ -28,3 +28,4 @@ payments_history as (
 )
 
 select * from payments_history
+order by anio_aceptacion
