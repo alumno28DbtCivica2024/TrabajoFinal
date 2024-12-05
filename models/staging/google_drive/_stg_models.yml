@@ -2,7 +2,9 @@ version: 2
 
 models:
   - name: stg_credit_history_member
-    description: "Vista que contiene el historial crediticio de los miembros, incluyendo detalles sobre sus cuentas y el historial de pagos."
+    description: >
+      Vista que contiene el historial crediticio de los miembros, incluyendo detalles sobre sus cuentas y el historial de pagos. 
+      Las cantidades de dinero vienen dadas en dolares.
     columns:
       - name: history_id
         data_type: varchar
@@ -92,7 +94,9 @@ models:
         description: "Estado de propiedad de vivienda del prestatario"
 
   - name: stg_loan
-    description: "Tabla que contiene información sobre los préstamos solicitados y financiados."
+    description: >
+      Tabla que contiene información sobre los préstamos solicitados y financiados. Las cantidades de dinero 
+      vienen dadas en dolares.
     columns:
       - name: loan_id
         data_type: varchar
@@ -215,7 +219,9 @@ models:
         description: "Estado del préstamo"
 
   - name: stg_per_info_members
-    description: "Vista con la información personal del miembro, incluyendo detalles sobre su empleo, ingresos, y estado de verificación."
+    description: >
+      Vista con la información personal del miembro, incluyendo detalles sobre su empleo, ingresos, y estado de verificación. Las cantidades de dinero 
+      vienen dadas en dolares.
     columns:
       - name: member_id
         data_type: varchar

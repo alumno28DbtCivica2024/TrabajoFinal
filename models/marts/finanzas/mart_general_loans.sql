@@ -21,8 +21,8 @@ fct_loan_state as (
 general_loans as (
 
     select 
-    A.grade as grado_riesgo,
-    B.purpose as proposito,
+        A.grade as grado_riesgo,
+        B.purpose as proposito,
         count(*) as numero_solicitudes_prestamos,
         sum(loan_amnt) as suma_capital_pedido,
         avg(int_rate) as media_interes,

@@ -5,7 +5,8 @@ models:
     description: >
       Vista que normaliza y transforma los datos del conjunto de préstamos cargado desde Google Drive. 
       Proporciona información detallada sobre los préstamos, incluyendo montos, tasas, términos, 
-      información del prestatario y datos relacionados con pagos y estados del préstamo.
+      información del prestatario y datos relacionados con pagos y estados del préstamo. Las cantidades de dinero 
+      vienen dadas en dolares.
     columns:
       - name: loan_id
         description: Identificador único del préstamo generado como clave surrogate.

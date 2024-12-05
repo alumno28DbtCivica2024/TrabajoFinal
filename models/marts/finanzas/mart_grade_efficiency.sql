@@ -26,7 +26,7 @@ num_clientes as (
 efficiency as ( 
     select 
         C.grade,
-        count(A.delinq_2_yrs) as num_clientes_delincuentes,
+        count(A.delinq_2_yrs) as num_clientes_fraudulentos,
         num_clientes
     from fct_credit_history_member A
     right join fct_loan_petition B 
@@ -40,8 +40,8 @@ efficiency as (
 
 select
     grade,
-    num_clientes_delincuentes,
+    num_clientes_fraudulentos,
     num_clientes,
-    num_clientes_delincuentes/num_clientes as ratio_delincuencia
+    num_clientes_fraudulentos*100/num_clientes as ratio_fraudulencia
 from efficiency
 order by grade
