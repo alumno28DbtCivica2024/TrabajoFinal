@@ -192,7 +192,7 @@ models:
         data_type: varchar
         description: ""
 
-      - name: emp_length_id
+      - name: emp_length
         data_type: varchar
         description: ""
 
@@ -200,7 +200,7 @@ models:
         data_type: varchar
         description: ""
 
-      - name: home_ownership_id
+      - name: home_ownership
         data_type: varchar
         description: ""
 
@@ -208,11 +208,11 @@ models:
         data_type: float
         description: ""
 
-      - name: verification_status_id
+      - name: verification_status
         data_type: varchar
         description: ""
 
-      - name: zip_code_id
+      - name: zip_code
         data_type: varchar
         description: ""
 
