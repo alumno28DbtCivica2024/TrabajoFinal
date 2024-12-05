@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='view') }}
 
 with fct_loan_petition as (
 
@@ -21,7 +21,7 @@ select * from {{ ref('dim_loan_status') }}
 loan_acceptance_and_state as (
 
     select 
-        D.loan_status,
+        D.loan_status as estado_prestamo,
         year(to_date(A.issue_d, 'MM-YYYY')) as anio_aceptacion,
         month(to_date(A.issue_d, 'MM-YYYY')) as mes_aceptacion,
         count(A.loan_id) as numero_prestamos

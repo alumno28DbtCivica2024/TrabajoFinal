@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: date
+    description: "Modelo que genera una tabla de dimensiones de fechas con varios niveles de granularidad y atributos relacionados con el mes, trimestre y año."
+    columns:
+      - name: date
+        description: "Fecha truncada al inicio del mes en formato MM-YYYY."
+      - name: month_of_year
+        description: "Número del mes dentro del año (1 a 12)."
+      - name: month_name
+        description: "Nombre completo del mes (por ejemplo, 'January')."
+      - name: month_name_short
+        description: "Nombre abreviado del mes (por ejemplo, 'Jan')."
+      - name: quarter_of_year
+        description: "Trimestre del año (1 a 4)."
+      - name: year_number
+        description: "Año correspondiente a la fecha."

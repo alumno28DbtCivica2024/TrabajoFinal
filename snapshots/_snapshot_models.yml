@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: payment_snapshot
+    description: >
+      Tabla que contiene la historia de los pagos recibidos. Las cantidades de dinero 
+      vienen dadas en dolares.
+    columns:
+      - name: payment_id
+        data_type: varchar
+        description: "Identificador de cada pago"
+        tests:
+          - not_null
+          - unique
+
+      - name: loan_id
+        data_type: varchar
+        description: "Identificador de cada prestamo"
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              field: loan_id
+              to: ref('stg_loan')
+
+      - name: last_pymnt_d
+        data_type: varchar
+        description: "Fecha del ultimo pago"
+
+      - name: last_pymnt_amnt
+        data_type: float
+        description: "Monto del ultimo pago"
+
+      - name: next_pymnt_d
+        data_type: varchar
+        description: "Proxima fecha de pago"
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: "Fecha de ingesta del dato"

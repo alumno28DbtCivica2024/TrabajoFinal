@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: fct_loan_state
-    description: ""
+    description: "Idem a stg_loan"
     columns:
       - name: loan_id
         data_type: varchar
@@ -62,7 +62,7 @@ models:
         description: ""
 
   - name: fct_loan_payments
-    description: ""
+    description: "Idem a payment_snapshot"
     columns:
       - name: payment_id
         data_type: varchar
@@ -93,7 +93,7 @@ models:
         description: ""
 
   - name: fct_loan_petition
-    description: ""
+    description: "Idem a stg_loan"
     columns:
       - name: loan_id
         data_type: varchar
@@ -164,7 +164,7 @@ models:
         description: ""
 
   - name: dim_purpose
-    description: ""
+    description: "Idem stg_purpose"
     columns:
       - name: purpose_id
         data_type: varchar
@@ -175,7 +175,7 @@ models:
         description: ""
 
   - name: dim_loan_status
-    description: ""
+    description: "Idem stg_loan_status"
     columns:
       - name: loan_status_id
         data_type: varchar
@@ -184,3 +184,301 @@ models:
       - name: loan_status
         data_type: varchar
         description: ""
+
+  - name: dim_emp_length
+    description: "Idem stg_emp_length"
+    columns:
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length
+        data_type: varchar
+        description: ""
+
+  - name: dim_members
+    description: "Idem stg_per_info_members"
+    columns:
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: emp_length_id
+        data_type: varchar
+        description: ""
+
+      - name: employ
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: annual_inc
+        data_type: float
+        description: ""
+
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: addr_state
+        data_type: varchar
+        description: ""
+
+      - name: dti
+        data_type: float
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: dim_verification_status
+    description: "Idem stg_verification_status"
+    columns:
+      - name: verification_status_id
+        data_type: varchar
+        description: ""
+
+      - name: verification_status
+        data_type: varchar
+        description: ""
+
+  - name: dim_home_ownership
+    description: "Idem stg_home_ownership"
+    columns:
+      - name: home_ownership_id
+        data_type: varchar
+        description: ""
+
+      - name: home_ownership
+        data_type: varchar
+        description: ""
+
+  - name: dim_zip_code
+    description: "Idem stg_zip_code"
+    columns:
+      - name: zip_code_id
+        data_type: varchar
+        description: ""
+
+      - name: zip_code
+        data_type: varchar
+        description: ""
+        
+  - name: fct_credit_history_member
+    description: "Idem stg_credit_history_member"
+    columns:
+      - name: history_id
+        data_type: varchar
+        description: ""
+
+      - name: member_id
+        data_type: varchar
+        description: ""
+
+      - name: delinq_2_yrs
+        data_type: number
+        description: ""
+
+      - name: earliest_cr_line
+        data_type: varchar
+        description: ""
+
+      - name: inq_last_6_mths
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_delinq
+        data_type: number
+        description: ""
+
+      - name: mths_since_last_record
+        data_type: number
+        description: ""
+
+      - name: open_acc
+        data_type: number
+        description: ""
+
+      - name: pub_rec
+        data_type: number
+        description: ""
+
+      - name: revol_bal
+        data_type: float
+        description: ""
+
+      - name: revol_util
+        data_type: float
+        description: ""
+
+      - name: total_acc
+        data_type: number
+        description: ""
+
+      - name: last_credit_pull_d
+        data_type: varchar
+        description: ""
+
+      - name: collections_12_mths_ex_med
+        data_type: float
+        description: ""
+
+      - name: mths_since_last_major_derog
+        data_type: number
+        description: ""
+
+      - name: history_date
+        data_type: timestamp_ntz
+        description: ""
+
+      - name: _fivetran_synced
+        data_type: timestamp_ntz
+        description: ""
+
+  - name: mart_general_loans
+    description: "Vista que recoge una serie de metricas generales de los prestamos solicitados"
+    columns:
+      - name: grado_riesgo
+        data_type: varchar
+        description: "Riesgo del prestamos calificado de la A a la G de menor a mayor."
+
+      - name: proposito
+        data_type: varchar
+        description: "Proposito del prestamo."
+
+      - name: numero_solicitudes_prestamos
+        data_type: number
+        description: "Numero de prestamos solicitados"
+
+      - name: suma_capital_pedido
+        data_type: number
+        description: "Capital que ha sido solicitado como prestamo"
+
+      - name: media_interes
+        data_type: float
+        description: "Media de ineteres aplicado sobre el prestamo"
+
+      - name: suma_capital_financiado
+        data_type: number
+        description: "Capital que ha sido financiado por el prestamista"
+
+      - name: ganancias_esperadas
+        data_type: float
+        description: "Ganancias esperadas para el prestamista"
+
+      - name: total_pagos_recibidos
+        data_type: float
+        description: "Total de pagos recibidos hasta el momento"
+
+  - name: mart_payments_history
+    description: "Vista con metricas historicas del volumen y el valor de los pagos"
+    columns:
+      - name: anio_pago
+        data_type: number
+        description: "Anio del pago"
+
+      - name: mes_pago
+        data_type: number
+        description: "Mes del pago"
+
+      - name: count(*)
+        data_type: number
+        description: "Numero de pagos"
+
+      - name: monto_pago
+        data_type: float
+        description: "Media del monto del pago"
+
+  - name: mart_loan_acceptance_and_state
+    description: "Vista con la informacion del momento en el que se aceptan prestamos y su estado actual"
+    columns:
+      - name: loan_status
+        data_type: varchar
+        description: "Estado actual del prestamo"
+
+      - name: anio_aceptacion
+        data_type: number
+        description: "Anio en el que se acepta el prestamo"
+
+      - name: mes_aceptacion
+        data_type: number
+        description: "Mes en el que se acepta el prestamo"
+
+      - name: numero_prestamos
+        data_type: number
+        description: "Numero de prestamos"
+
+  - name: mart_loan_char
+    description: "Vista que recoge caracteristicas adicionales de los prestamos"
+    columns:
+      - name: numero_meses
+        data_type: number
+        description: "Meses planeados para pagar el prestamo"
+
+      - name: plan_pago
+        data_type: boolean
+        description: "Marca si el prestamo posee un plan de pago especial"
+
+      - name: tipo_prestamo
+        data_type: varchar
+        description: "Indica el tipo de prestamo. Individual o conjunto."
+
+      - name: estado_prestamo
+        data_type: varchar
+        description: "Estado de la solicitud del prestamo"
+
+      - name: numero_prestamos
+        data_type: number
+        description: "Numero de prestamos"
+
+  - name: mart_failed_loans
+    description: "Vista que recoge informacion de los prestamos fallidos/fraudulentos."
+    columns:
+      - name: grade
+        data_type: varchar
+        description: "Grado de riesgo del prestamo. Ordenado de menor a mayor de A a G."
+
+      - name: numero_prestamos
+        data_type: number
+        description: "Numero de prestamos"
+
+      - name: recaudacion_penalizaciones
+        data_type: float
+        description: "Dinero recaudado a traves de penalizaciones."
+
+      - name: recuperacion_tras_incumplimiento
+        data_type: float
+        description: "Dinero recaudado tras el incumplimiento del plan establecido."
+
+      - name: costes_recuperacion
+        data_type: float
+        description: "Costes asociados a la recuperacion del dinero tras incumplimiento"
+
+  - name: mart_grade_efficiency
+    description: "Tabla que recoge informacion para poner a prueba la calidad del sistema de grados del banco."
+    columns:
+      - name: grade
+        data_type: varchar
+        description: "Grado de riesgo del prestamo."
+
+      - name: num_clientes_delincuentes
+        data_type: number
+        description: "Numero de clientes con antecedentes de fraude."
+
+      - name: num_clientes
+        data_type: number
+        description: >
+          Numero de clientes totales que realizan una solicitud de prestamo, con repeticion (aunque un mismo
+          cliente pida varios prestamos contaria como varios clientes)."
+
+      - name: ratio_fraudulencia
+        data_type: number
+        description: "Porcentaje de clientes con antecedentes de fraude sobre el total de clientes."

@@ -1,333 +1,316 @@
-
 version: 2
 
 models:
   - name: stg_credit_history_member
-    description: ""
+    description: >
+      Vista que contiene el historial crediticio de los miembros, incluyendo detalles sobre sus cuentas y el historial de pagos. 
+      Las cantidades de dinero vienen dadas en dolares.
     columns:
       - name: history_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del historial crediticio de un miembro en un momento dado"
+        tests:
+          - not_null
+          - unique
       - name: member_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador de un miembro"
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              field: member_id
+              to: ref('stg_per_info_members')
       - name: delinq_2_yrs
         data_type: number
-        description: ""
-
+        description: "Número de cuentas con retrasos de más de 30 días en los últimos 2 años"
       - name: earliest_cr_line
         data_type: varchar
-        description: ""
-
+        description: "Fecha de apertura de la línea de crédito más antigua en formato MM-YYYY."
       - name: inq_last_6_mths
         data_type: number
-        description: ""
-
+        description: "Número de consultas de crédito realizadas en los últimos 6 meses"
       - name: mths_since_last_delinq
         data_type: number
-        description: ""
-
+        description: "Meses desde el último incumplimiento reportado"
       - name: mths_since_last_record
         data_type: number
-        description: ""
-
+        description: "Meses desde el último registro público negativo"
       - name: open_acc
         data_type: number
-        description: ""
-
+        description: "Número total de cuentas de crédito abiertas"
       - name: pub_rec
         data_type: number
-        description: ""
-
+        description: "Número de registros públicos reportados"
       - name: revol_bal
         data_type: float
-        description: ""
-
+        description: "Saldo total de crédito rotativo del miembro"
       - name: revol_util
         data_type: float
-        description: ""
-
+        description: "Utilización del crédito rotativo como porcentaje"
       - name: total_acc
         data_type: number
-        description: ""
-
+        description: "Número total de cuentas de crédito"
       - name: last_credit_pull_d
         data_type: varchar
-        description: ""
-
+        description: "Fecha de la última consulta de crédito en formato MM-YYYY"
       - name: collections_12_mths_ex_med
         data_type: float
-        description: ""
-
+        description: "Cantidad de cobros en los últimos 12 meses excluyendo lo médico"
       - name: mths_since_last_major_derog
         data_type: number
-        description: ""
-
+        description: "Meses desde la última falta grave reportada"
       - name: history_date
         data_type: timestamp_tz
-        description: ""
-
+        description: "Fecha y hora en que se registró el historial crediticio"
       - name: _fivetran_synced
         data_type: timestamp_tz
-        description: ""
-
+        description: "Marca de sincronización por Fivetran"
+  
   - name: stg_emp_length
-    description: ""
+    description: "Tabla que contiene los diferentes rangos de antigüedad laboral de los prestatarios."
     columns:
       - name: emp_length_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único para el rango de antigüedad laboral"
+        tests:
+          - not_null
+          - unique
       - name: emp_length
         data_type: varchar
-        description: ""
+        description: "Número de años de empleo del prestatario en formato textual"
 
   - name: stg_home_ownership
-    description: ""
+    description: "Tabla que contiene las opciones de propiedad de vivienda para los prestatarios."
     columns:
       - name: home_ownership_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único de la propiedad de vivienda"
+        tests:
+          - not_null
+          - unique
       - name: home_ownership
         data_type: varchar
-        description: ""
+        description: "Estado de propiedad de vivienda del prestatario"
 
   - name: stg_loan
-    description: ""
+    description: >
+      Tabla que contiene información sobre los préstamos solicitados y financiados. Las cantidades de dinero 
+      vienen dadas en dolares.
     columns:
       - name: loan_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único del préstamo"
+        tests:
+          - not_null
+          - unique
       - name: member_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del miembro que solicitó el préstamo"
+        tests:
+          - not_null
+          - unique
+          - relationships:
+              field: member_id
+              to: ref('stg_per_info_members')
       - name: loan_amnt
         data_type: number
-        description: ""
-
+        description: "Monto total del préstamo solicitado"
       - name: term_months
         data_type: number
-        description: ""
-
+        description: "Plazo del préstamo en meses"
       - name: int_rate
         data_type: float
-        description: ""
-
+        description: "Tasa de interés aplicada al préstamo"
       - name: monthly_fee
         data_type: float
-        description: ""
-
+        description: "Cuota mensual asociada al préstamo"
       - name: grade
         data_type: varchar
-        description: ""
-
+        description: "Clasificación del préstamo basada en el riesgo crediticio"
       - name: sub_grade
         data_type: varchar
-        description: ""
-
+        description: "Subclasificación del préstamo basada en el riesgo crediticio"
       - name: issue_d
         data_type: varchar
-        description: ""
-
+        description: "Fecha de emisión del préstamo en formato MM-YYYY"
       - name: pymnt_plan
         data_type: boolean
-        description: ""
-
+        description: "Indica si el prestatario está en un plan de pagos (TRUE/FALSE)"
       - name: desc
         data_type: varchar
-        description: ""
-
+        description: "Descripción proporcionada para el préstamo"
       - name: purpose_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único para el propósito del préstamo"
+        tests:
+          - not_null
+          - relationships:
+              field: purpose_id
+              to: ref('stg_purpose')
       - name: title
         data_type: varchar
-        description: ""
-
+        description: "Título del préstamo"
       - name: initial_list_status
         data_type: varchar
-        description: ""
-
+        description: "Estado inicial del listado del préstamo ('funded' o 'waitlist')"
       - name: application_type
         data_type: varchar
-        description: ""
-
+        description: "Tipo de solicitud del préstamo ('Individual' o 'Joint')"
       - name: policy_code
         data_type: varchar
-        description: ""
-
+        description: "Indica si el préstamo pertenece a la política 'Public' o 'No public'"
       - name: funded_amnt
         data_type: number
-        description: ""
-
+        description: "Monto total financiado para el préstamo"
       - name: funded_amnt_inv
         data_type: number
-        description: ""
-
+        description: "Monto total invertido en el préstamo por los inversionistas"
       - name: loan_status_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del estado actual del préstamo"
+        tests:
+          - not_null
+          - relationships:
+              field: loan_status_id
+              to: ref('stg_loan_status')
       - name: out_prncp
         data_type: float
-        description: ""
-
+        description: "Principal restante pendiente"
       - name: out_prncp_inv
         data_type: float
-        description: ""
-
+        description: "Principal restante pendiente para inversionistas"
       - name: total_pymnt
         data_type: float
-        description: ""
-
+        description: "Pagos totales realizados redondeados a 2 decimales"
       - name: total_pymnt_inv
         data_type: float
-        description: ""
-
+        description: "Pagos totales realizados por inversionistas"
       - name: total_rec_prncp
         data_type: float
-        description: ""
-
+        description: "Principal total recibido"
       - name: total_rec_int
         data_type: float
-        description: ""
-
+        description: "Intereses totales recibidos"
       - name: total_rec_late_fee
         data_type: float
-        description: ""
-
+        description: "Multas totales por pagos tardíos recibidas"
       - name: recoveries
         data_type: float
-        description: ""
-
+        description: "Monto recuperado en préstamos impagos"
       - name: collection_recovery_fee
         data_type: float
-        description: ""
-
+        description: "Cargos por recuperación de colecciones redondeados a 2 decimales"
       - name: _fivetran_synced
         data_type: timestamp_tz
-        description: ""
+        description: "Marca de sincronización por Fivetran"
 
   - name: stg_loan_status
-    description: ""
+    description: "Tabla que contiene el estado de los préstamos disponibles."
     columns:
       - name: loan_status_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único del estado del préstamo"
+        tests:
+          - not_null
+          - unique
       - name: loan_status
         data_type: varchar
-        description: ""
+        description: "Estado del préstamo"
 
   - name: stg_per_info_members
-    description: ""
+    description: >
+      Vista con la información personal del miembro, incluyendo detalles sobre su empleo, ingresos, y estado de verificación. Las cantidades de dinero 
+      vienen dadas en dolares.
     columns:
       - name: member_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador único del miembro"
+        tests:
+          - not_null
+          - unique
       - name: emp_length_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del rango de antigüedad laboral del miembro"
+        tests:
+          - not_null
+          - relationships:
+              field: emp_length_id
+              to: ref('stg_emp_length')
       - name: employ
         data_type: varchar
-        description: ""
-
+        description: "Título del empleo del prestatario o 'Unemployed' si no se especifica"
       - name: home_ownership_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador de la propiedad de vivienda del miembro"
+        tests:
+          - not_null
+          - relationships:
+              field: home_ownership_id
+              to: ref('stg_home_ownership')
       - name: annual_inc
         data_type: float
-        description: ""
-
+        description: "Ingreso anual reportado del prestatario"
       - name: verification_status_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del estado de verificación del ingreso del prestatario"
+        tests:
+          - not_null
+          - relationships:
+              field: verification_status_id
+              to: ref('stg_verification_status')
       - name: zip_code_id
         data_type: varchar
-        description: ""
-
+        description: "Identificador del código postal del miembro"
+        tests:
+          - not_null
+          - relationships:
+              field: zip_code_id
+              to: ref('stg_zip_code')
       - name: addr_state
         data_type: varchar
-        description: ""
-
+        description: "Estado de residencia del prestatario"
       - name: dti
         data_type: float
-        description: ""
-
+        description: "Relación deuda-ingreso del prestatario"
       - name: _fivetran_synced
         data_type: timestamp_tz
-        description: ""
+        description: "Marca de sincronización por Fivetran"
+
+  - name: stg_verification_status
+    description: "Tabla con los posibles estados de verificación de los ingresos de un miembro."
+    columns:
+      - name: verification_status_id
+        data_type: varchar
+        description: "Identificador único del estado de verificación de los ingresos"
+        tests:
+          - not_null
+          - unique
+      - name: verification_status
+        data_type: varchar
+        description: "Estado de verificación de los ingresos del prestatario"
 
   - name: stg_purpose
-    description: ""
+    description: "Tabla con los posibles propositos de un prestamo"
     columns:
       - name: purpose_id
         data_type: varchar
-        description: ""
+        description: "Identificador del propostio del prestamo"
+        tests:
+          - not_null
+          - unique
 
       - name: purpose
         data_type: varchar
-        description: ""
-
-  - name: stg_verification_status
-    description: ""
-    columns:
-      - name: verification_status_id
-        data_type: varchar
-        description: ""
-
-      - name: verification_status
-        data_type: varchar
-        description: ""
+        description: "Proposito del prestamo"
 
   - name: stg_zip_code
-    description: ""
+    description: "Tabla con los posibles codigos postales"
     columns:
       - name: zip_code_id
         data_type: varchar
-        description: ""
+        description: "Identificador del codigo postal"
 
       - name: zip_code
         data_type: varchar
-        description: ""
-
-  - name: stg_loan_payments
-    description: ""
-    columns:
-      - name: payment_id
-        data_type: varchar
-        description: ""
-
-      - name: loan_id
-        data_type: varchar
-        description: ""
-
-      - name: last_pymnt_d
-        data_type: varchar
-        description: ""
-
-      - name: last_pymnt_amnt
-        data_type: float
-        description: ""
-
-      - name: next_pymnt_d
-        data_type: varchar
-        description: ""
-
-      - name: dbt_valid_from
-        data_type: timestamp_ntz
-        description: ""
-
-      - name: dbt_valid_to
-        data_type: timestamp_ntz
-        description: ""
+        description: "Codigo postal"
