@@ -185,17 +185,6 @@ models:
         data_type: varchar
         description: ""
 
-  - name: dim_emp_length
-    description: "Idem stg_emp_length"
-    columns:
-      - name: emp_length_id
-        data_type: varchar
-        description: ""
-
-      - name: emp_length
-        data_type: varchar
-        description: ""
-
   - name: dim_members
     description: "Idem stg_per_info_members"
     columns:
@@ -237,39 +226,6 @@ models:
 
       - name: _fivetran_synced
         data_type: timestamp_ntz
-        description: ""
-
-  - name: dim_verification_status
-    description: "Idem stg_verification_status"
-    columns:
-      - name: verification_status_id
-        data_type: varchar
-        description: ""
-
-      - name: verification_status
-        data_type: varchar
-        description: ""
-
-  - name: dim_home_ownership
-    description: "Idem stg_home_ownership"
-    columns:
-      - name: home_ownership_id
-        data_type: varchar
-        description: ""
-
-      - name: home_ownership
-        data_type: varchar
-        description: ""
-
-  - name: dim_zip_code
-    description: "Idem stg_zip_code"
-    columns:
-      - name: zip_code_id
-        data_type: varchar
-        description: ""
-
-      - name: zip_code
-        data_type: varchar
         description: ""
         
   - name: fct_credit_history_member
