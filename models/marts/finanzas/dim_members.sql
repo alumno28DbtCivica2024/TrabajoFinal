@@ -1,35 +1,35 @@
-{{ config(
-    materialized='incremental',
-    unique_key = 'member_id'
-    ) 
-    }}
+{{ config(materialized='view') }}
 
 with source as (
 
-    select * from {{ ref('stg_per_info_members') }}
+    select distinct
+        member_id,
+        employ,
+        E.emp_length,
+        D.home_ownership,
+        annual_inc,
+        B.verification_status,
+        C.zip_code,
+        addr_state,
+        dti,
+        _fivetran_synced 
+    from {{ ref('stg_per_info_members') }} A
+    right join {{ ref('stg_verification_status') }} B
+    on A.verification_status_id=B.verification_status_id
+    right join {{ ref('stg_zip_code') }} C
+    on A.zip_code_id=C.zip_code_id
+    right join {{ ref('stg_home_ownership') }} D
+    on A.home_ownership_id=D.home_ownership_id
+    right join {{ ref('stg_emp_length') }} E
+    on A.emp_length_id=E.emp_length_id
 
-{% if is_incremental() %}
-
-
-	  WHERE _fivetran_synced > (SELECT MAX(_fivetran_synced) FROM {{ this }} )
-
-{% endif %}
 
 ),
 
 renamed as (
 
     select distinct
-        member_id,
-        emp_length_id,
-        employ,
-        home_ownership_id,
-        annual_inc,
-        verification_status_id,
-        zip_code_id,
-        addr_state,
-        dti,
-        _fivetran_synced
+        *
 
     from source
 
